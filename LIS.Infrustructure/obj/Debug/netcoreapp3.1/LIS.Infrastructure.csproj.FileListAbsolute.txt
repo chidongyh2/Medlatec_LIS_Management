@@ -1,0 +1,16 @@
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\bin\Debug\netcoreapp3.1\LIS.Infrastructure.deps.json
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\bin\Debug\netcoreapp3.1\LIS.Infrastructure.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\bin\Debug\netcoreapp3.1\LIS.Infrastructure.pdb
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\bin\Debug\netcoreapp3.1\en-US\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\bin\Debug\netcoreapp3.1\vi-VN\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.csprojAssemblyReference.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.Resources.SharedResource.en-US.resources
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.Resources.SharedResource.vi-VN.resources
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.csproj.GenerateResource.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.AssemblyInfoInputs.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.AssemblyInfo.cs
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\en-US\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\vi-VN\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Infrustructure\obj\Debug\netcoreapp3.1\LIS.Infrastructure.pdb

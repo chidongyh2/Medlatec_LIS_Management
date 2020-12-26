@@ -1,0 +1,14 @@
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\LIS.Core.Application.deps.json
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\LIS.Core.Application.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\LIS.Core.Application.pdb
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\LIS.Infrastructure.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\LIS.Infrastructure.pdb
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\en-US\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\bin\Debug\netcoreapp3.1\vi-VN\LIS.Infrastructure.resources.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.csprojAssemblyReference.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.AssemblyInfoInputs.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.AssemblyInfo.cs
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.csproj.CoreCompileInputs.cache
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.csproj.CopyComplete
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application\obj\Debug\netcoreapp3.1\LIS.Core.Application.pdb

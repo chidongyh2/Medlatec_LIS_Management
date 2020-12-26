@@ -1,0 +1,23 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LIS.Infrastructure.Domain.SystemAggregate
+{
+    public class Ethnic
+    {
+        /// <summary>
+        /// Mã dân tộc.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Tên dân tộc.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Tên không dấu tìm kiếm.
+        /// </summary>
+        public string UnsignName { get; set; }
+    }
+
+}

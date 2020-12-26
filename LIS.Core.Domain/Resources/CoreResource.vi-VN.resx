@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active tenant successful." xml:space="preserve">
+    <value>Kích hoạt đơn vị thành công.</value>
+  </data>
+  <data name="Add new language successful." xml:space="preserve">
+    <value>Thêm mới ngôn ngữ thành công.</value>
+  </data>
+  <data name="Add new page successful" xml:space="preserve">
+    <value>Thêm mới trang thành công.</value>
+  </data>
+  <data name="Add new page to role successful." xml:space="preserve">
+    <value>Thêm mới trang cho vai trò thành công.</value>
+  </data>
+  <data name="Add new role permission successful." xml:space="preserve">
+    <value>Thêm mới quyền thành công.</value>
+  </data>
+  <data name="Add new role successful." xml:space="preserve">
+    <value>Thêm mới vai trò thành công.</value>
+  </data>
+  <data name="Add new tag successful." xml:space="preserve">
+    <value>Thêm mới thẻ thành công.</value>
+  </data>
+  <data name="Add new tenant successful." xml:space="preserve">
+    <value>Thêm mới đơn vị thành công.</value>
+  </data>
+  <data name="Add new user role successful." xml:space="preserve">
+    <value>Thêm mới người dùng thành công.</value>
+  </data>
+  <data name="Assign role successful." xml:space="preserve">
+    <value>Gán quyền thành công.</value>
+  </data>
+  <data name="Change password successful." xml:space="preserve">
+    <value>Thay đổi mật khẩu thành công.</value>
+  </data>
+  <data name="Deactive tenant successful." xml:space="preserve">
+    <value>Vô hiệu hóa đơn vị thành công.</value>
+  </data>
+  <data name="Delete account successful." xml:space="preserve">
+    <value>Xóa tài khoản thành công.</value>
+  </data>
+  <data name="Delete page successful." xml:space="preserve">
+    <value>Xóa thông tin trang thành công.</value>
+  </data>
+  <data name="Delete role successful." xml:space="preserve">
+    <value>Xóa vai trò thành công.</value>
+  </data>
+  <data name="Delete tenant language successful." xml:space="preserve">
+    <value>Xóa ngôn ngữ của đơn vị thành công.</value>
+  </data>
+  <data name="Delete user role by user successful." xml:space="preserve">
+    <value>Xóa vai trò người dùng thành công.</value>
+  </data>
+  <data name="Email or phone number already exists." xml:space="preserve">
+    <value>Email hoặc Số điện thoại đã tồn tại.</value>
+  </data>
+  <data name="List subject tags is null." xml:space="preserve">
+    <value>Danh sách danh mục thẻ trống.</value>
+  </data>
+  <data name="Old password does not match." xml:space="preserve">
+    <value>Mật khẩu cũ không khớp.</value>
+  </data>
+  <data name="Page already exists." xml:space="preserve">
+    <value>Thông tin trang đã tồn tại.</value>
+  </data>
+  <data name="Page not found." xml:space="preserve">
+    <value>Không tìm thấy trang.</value>
+  </data>
+  <data name="Parent page does not exists." xml:space="preserve">
+    <value>Trang cha không tồn tại.</value>
+  </data>
+  <data name="Please add at least one language." xml:space="preserve">
+    <value>Vui lòng thêm một ngôn ngữ.</value>
+  </data>
+  <data name="Please select at least 1 page and permission." xml:space="preserve">
+    <value>Vui lòng chọn ít nhất 1 trang và quyền cho trang đó.</value>
+  </data>
+  <data name="Please select at least one language." xml:space="preserve">
+    <value>Vui lòng chọn ít nhất một ngôn ngữ.</value>
+  </data>
+  <data name="Please select permission for update." xml:space="preserve">
+    <value>Vui lòng chọn quyền để cập nhật.</value>
+  </data>
+  <data name="Remove permission fail." xml:space="preserve">
+    <value>Xóa quyền không thành công.</value>
+  </data>
+  <data name="Remove permission successful." xml:space="preserve">
+    <value>Xóa quyền thành công.</value>
+  </data>
+  <data name="Remove user role successful." xml:space="preserve">
+    <value>Xóa vai trò người dùng thành công.</value>
+  </data>
+  <data name="Role already assigned for this user." xml:space="preserve">
+    <value>Vai trò đã được gán cho người dùng này.</value>
+  </data>
+  <data name="Role does not exists." xml:space="preserve">
+    <value>Vai trò không tồn tại.</value>
+  </data>
+  <data name="Role does not exists. Please try again." xml:space="preserve">
+    <value>Vai trò không tồn tại. Vui lòng thử lại.</value>
+  </data>
+  <data name="Role has been updated by another staff. You can not update this role." xml:space="preserve">
+    <value>Vai trò đã được cập nhật bởi người khác. Bạn không thể cập nhật quyền này.</value>
+  </data>
+  <data name="Role name already exists. Please try again." xml:space="preserve">
+    <value>Tên vai trò đã tồn tại. Vui lòng thử lại.</value>
+  </data>
+  <data name="Tenant does not exists." xml:space="preserve">
+    <value>Đơn vị không tồn tại.</value>
+  </data>
+  <data name="Tenant info doest not exists." xml:space="preserve">
+    <value>Thông tin tenant không tồn tại. Vui lòng kiểm tra lại.</value>
+  </data>
+  <data name="Tenant languages does not exists." xml:space="preserve">
+    <value>Ngôn ngữ của đơn vị không tồn tại.</value>
+  </data>
+  <data name="Update news subject tags successful." xml:space="preserve">
+    <value>Cập nhật danh mục thẻ thành công.</value>
+  </data>
+  <data name="Update page successful." xml:space="preserve">
+    <value>Cập nhật thông tin trang thành công.</value>
+  </data>
+  <data name="Update role page succesful." xml:space="preserve">
+    <value>Cập nhật quyền cho trang thành công.</value>
+  </data>
+  <data name="Update role successful." xml:space="preserve">
+    <value>Cập nhật vai trò thành công.</value>
+  </data>
+  <data name="Update tenant language successful." xml:space="preserve">
+    <value>Cập nhật ngôn ngữ cho đơn vị thành công.</value>
+  </data>
+  <data name="Update tenant {0} successful." xml:space="preserve">
+    <value>Cập nhật đơn vị {0} thành công.</value>
+  </data>
+  <data name="Update user role successful." xml:space="preserve">
+    <value>Cập nhật vai trò người dùng thành công.</value>
+  </data>
+  <data name="User does not exists." xml:space="preserve">
+    <value>Người dùng không tồn tại.</value>
+  </data>
+  <data name="User info not found. Please contact with administrator." xml:space="preserve">
+    <value>Không tìm thấy thông tin người dùng. Vui lòng liên hệ với quản trị viên.</value>
+  </data>
+  <data name="UserAccount does not exists" xml:space="preserve">
+    <value>Tài khoản không tồn tại.</value>
+  </data>
+  <data name="You can not delete built-In role." xml:space="preserve">
+    <value>Bạn không thể xóa.</value>
+  </data>
+  <data name="You can not modifi built-In role." xml:space="preserve">
+    <value>Bạn không thể chỉnh sửa.</value>
+  </data>
+  <data name="You do not have permission to view this role." xml:space="preserve">
+    <value>Bạn không có quyền xem vai trò này.</value>
+  </data>
+  <data name="{0} tenant language successful." xml:space="preserve">
+    <value>{0} ngôn ngữ cho đơn vị thành công.</value>
+  </data>
+</root>
