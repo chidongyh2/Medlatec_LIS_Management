@@ -1,9 +1,16 @@
 using LIS.Core.Api.Helpers;
+using LIS.Core.Domain.IRepository;
+using LIS.Core.Domain.Resources;
 using LIS.Core.Infrastructure;
+using LIS.Core.Infrastructure.Repository;
 using LIS.Core.Infrustructure;
+using LIS.Infrastructure.IServices;
 using LIS.Infrastructure.Localization;
 using LIS.Infrastructure.Mvc;
+using LIS.Infrastructure.Oracle;
+using LIS.Infrastructure.Resources;
 using LIS.Infrastructure.SeedWorks;
+using LIS.Infrastructure.Services;
 using LIS.Infrastructure.UowInterceptor.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -37,11 +44,11 @@ namespace LIS.Core.Api
         {
             services
                 .AddDbContext<CoreDbContext>(options =>
-                    options.UseLazyLoadingProxies()
+                    options
                         .UseOracle(Configuration.GetConnectionString("CoreConnectionString"), ops =>
                         {
-                            //ops.MigrationsAssembly(_assemblyName);
-                            //ops.MigrationsHistoryTable("__EFMigrationsHistory");
+                            ops.MigrationsAssembly("LIS.Core.Infrustructure");
+                            ops.MigrationsHistoryTable("__EFMigrationsHistory");
                         }))
                 .AddScoped<IDbConnection>(sp =>
                 {
@@ -66,8 +73,21 @@ namespace LIS.Core.Api
             services.AddSwagger();
             services.ConfigureLocalization();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IDbContext, CoreDbContext>();
             services.AddScoped<IUnitOfWork, CoreUnitOfWork>();
             services.AddScoped<IScopeContext, ScopeContext>();
+            //init lifetime service DI
+            services.AddScoped<IResourceService<SharedResource>, ResourceService<SharedResource>>();
+            services.AddScoped<IResourceService<CoreResource>, ResourceService<CoreResource>>();
+            services.AddScoped<IPageRepository, PageRepository>();
+            services.AddScoped<IEthnicRepository, EthnicRepository>();
+            services.AddScoped<IProvinceRepository, ProvinceRepository>();
+            services.AddScoped<IReligionRepository, ReligionRepository>();
+            services.AddScoped<IRolePageRepository, RolePageRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ITenantPageRepository, TenantPageRepository>();
+            services.AddScoped<ITenantRepository, TenantRepository>();
+            services.AddScoped<IUserAccountRepository, UserAccountRepository>();
             services.AddMediatR(typeof(Application.Assembly).GetTypeInfo().Assembly);
             services.AddCustomAuthentication(Configuration);
         }

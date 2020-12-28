@@ -1,5 +1,9 @@
+using LIS.Authentication.Infrastructure;
+using LIS.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Oracle.ManagedDataAccess.Client;
 
 namespace LIS.Authentication.Api
 {
@@ -14,7 +18,12 @@ namespace LIS.Authentication.Api
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .ConfigureAppConfiguration((context, config) => {
+                        var currentConfig = config.Build();
+                        var connection = new OracleConnection(currentConfig.GetConnectionString("AuthConnectionString"));
+                        config.AddEntityFrameworkConfig<IdentityDbContext>(connection);
+                    });
                 });
     }
 }

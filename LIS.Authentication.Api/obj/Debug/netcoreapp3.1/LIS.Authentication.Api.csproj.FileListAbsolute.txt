@@ -12,6 +12,7 @@ D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Deb
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\AutoMapper.dll
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\Dapper.dll
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\FluentValidation.dll
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\IdentityModel.dll
 D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Authentication.Api\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll

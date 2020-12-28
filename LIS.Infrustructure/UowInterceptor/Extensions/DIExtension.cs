@@ -10,17 +10,17 @@ namespace LIS.Infrastructure.UowInterceptor.Extensions
     {
         public static void AddUnitOfWorkInterceptors(this IServiceCollection services, Assembly[] assemblies)
         {
-            assemblies.SelectMany(t => t.GetTypes())
+            assemblies.Where(t => !t.FullName.Contains("Oracle.ManagedDataAccess")).SelectMany(t => t.GetTypes())
                 .Where(t => t.IsClass && !t.IsAbstract && t.ImplementInterface(typeof(IOnBeforeCommit)))
                 .ToList()
                 .ForEach(t => { services.AddTransient(typeof(IOnBeforeCommit), t); });
 
-            assemblies.SelectMany(t => t.GetTypes())
+            assemblies.Where(t => !t.FullName.Contains("Oracle.ManagedDataAccess")).SelectMany(t => t.GetTypes())
                 .Where(t => t.IsClass && !t.IsAbstract && t.ImplementInterface(typeof(IOnAfterCommit)))
                 .ToList()
                 .ForEach(t => { services.AddTransient(typeof(IOnAfterCommit), t); });
 
-            assemblies.SelectMany(t => t.GetTypes())
+            assemblies.Where(t => !t.FullName.Contains("Oracle.ManagedDataAccess")).SelectMany(t => t.GetTypes())
                 .Where(t => t.IsClass && !t.IsAbstract && t.ImplementInterface(typeof(IOnAdd<>)))
                 .ToList()
                 .ForEach(t =>
@@ -34,7 +34,7 @@ namespace LIS.Infrastructure.UowInterceptor.Extensions
                         });
                 });
 
-            assemblies.SelectMany(t => t.GetTypes())
+            assemblies.Where(t => !t.FullName.Contains("Oracle.ManagedDataAccess")).SelectMany(t => t.GetTypes())
                 .Where(t => t.IsClass && !t.IsAbstract && t.ImplementInterface(typeof(IOnUpdate<>)))
                 .ToList()
                 .ForEach(t =>
@@ -48,7 +48,7 @@ namespace LIS.Infrastructure.UowInterceptor.Extensions
                         });
                 });
 
-            assemblies.SelectMany(t => t.GetTypes())
+            assemblies.Where(t => !t.FullName.Contains("Oracle.ManagedDataAccess")).SelectMany(t => t.GetTypes())
                 .Where(t => t.IsClass && !t.IsAbstract && t.ImplementInterface(typeof(IOnDelete<>)))
                 .ToList()
                 .ForEach(t =>

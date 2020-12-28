@@ -24,8 +24,8 @@ namespace LIS.Authentication
 
         public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope>
         {
-            new ApiScope("LIS_Core_Api", "Api Scope"),
-            new ApiScope("LIS_Gateway_Api", "Api Scope")
+            new ApiScope("LIS_Core_Api", "Api Core Scope"),
+            new ApiScope("LIS_Gateway_Api", "Api Gateway Scope")
         };
 
         public static IEnumerable<ApiResource> GetApis(IDictionary<string, string[]> apiSecrets)

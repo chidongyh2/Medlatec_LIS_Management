@@ -1,19 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using LIS.Infrastructure.Extensions;
 using LIS.Infrastructure.SeedWorks;
 
 namespace LIS.Core.Domain.AggregateModels.TenantAggregate
 {
-    public class Tenant : ModifierTrackingEntity, IAggregateRoot
+    public class Tenant : ModifierTrackingEntity
     {
+        [Required, MaxLength(500)]
         public string Name { get; private set; }
+        [Required, MaxLength(500)]
         public string UnsignName { get; private set; }
+        [Required, MaxLength(15)]
         public string PhoneNumber { get; private set; }
+        [Required, MaxLength(250)]
         public string Email { get; private set; }
+        [Required, MaxLength(500)]
         public string Address { get; private set; }
         public bool IsActive { get; private set; }
+        [MaxLength(500)]
         public string Note { get; private set; }
+        [MaxLength(500)]
         public string Logo { get; private set; }
         public virtual IList<TenantPage> TenantPages { get; private set; }
 

@@ -22,17 +22,16 @@ namespace LIS.Core.Infrustructure.Migrations
             modelBuilder.Entity("LIS.Core.Domain.AggregateModels.TenantAggregate.Page", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<string>("BgColor")
-                        .HasColumnType("VARCHAR2(10)")
-                        .HasMaxLength(10)
-                        .IsUnicode(false);
-
-                    b.Property<int>("ChildCount")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("NUMBER(10)")
-                        .HasDefaultValue(0);
+                        .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BgColor")
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("ChildCount")
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
@@ -44,17 +43,17 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
 
                     b.Property<string>("Description")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Icon")
-                        .HasColumnType("VARCHAR2(50)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<string>("IdPath")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR2(4000)")
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("NUMBER(1)");
@@ -75,13 +74,16 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
 
                     b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<int>("Order")
                         .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("OrderPath")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<int?>("ParentId")
                         .HasColumnType("NUMBER(10)");
@@ -93,9 +95,8 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Url")
-                        .HasColumnType("VARCHAR2(500)")
-                        .HasMaxLength(500)
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Id");
 
@@ -106,8 +107,7 @@ namespace LIS.Core.Infrustructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)")
-                        .HasMaxLength(50);
+                        .HasColumnType("RAW(16)");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -125,8 +125,8 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(500)")
-                        .HasMaxLength(500);
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("NUMBER(1)");
@@ -144,14 +144,13 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
 
                     b.Property<string>("Logo")
-                        .HasColumnType("VARCHAR2(500)")
-                        .HasMaxLength(500)
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Note")
                         .HasColumnType("NVARCHAR2(500)")
@@ -159,41 +158,41 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasColumnType("NVARCHAR2(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("NVARCHAR2(15)")
+                        .HasMaxLength(15);
 
                     b.Property<string>("UnsignName")
                         .IsRequired()
-                        .HasColumnType("VARCHAR2(1000)")
-                        .HasMaxLength(1000)
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tenant");
+                    b.ToTable("Tenants");
                 });
 
             modelBuilder.Entity("LIS.Core.Domain.AggregateModels.TenantAggregate.TenantPage", b =>
                 {
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("RAW(16)")
-                        .HasMaxLength(50)
-                        .IsUnicode(false);
-
-                    b.Property<int>("PageId")
-                        .HasColumnType("NUMBER(10)");
-
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("RAW(16)");
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("NUMBER(1)");
 
-                    b.HasKey("TenantId", "PageId");
+                    b.Property<int>("PageId")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("RAW(16)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("PageId");
 
-                    b.ToTable("TenantsPages");
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("TenantPages");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.Account", b =>
@@ -206,7 +205,8 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NUMBER(10)");
 
                     b.Property<string>("Address")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -220,7 +220,9 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("NUMBER(1)");
@@ -229,7 +231,9 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("NUMBER(1)");
@@ -259,7 +263,8 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<string>("ProfileImageUrl")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("NVARCHAR2(2000)");
@@ -315,7 +320,8 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("Description")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Name")
                         .HasColumnType("NVARCHAR2(256)")
@@ -329,7 +335,8 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("RAW(16)");
 
                     b.Property<string>("Type")
-                        .HasColumnType("NVARCHAR2(2000)");
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
 
                     b.HasKey("Id");
 
@@ -355,16 +362,11 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.Property<Guid>("RoleId")
                         .HasColumnType("RAW(16)");
 
-                    b.Property<Guid?>("RoleId1")
-                        .HasColumnType("RAW(16)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.HasIndex("RoleId1");
-
-                    b.ToTable("RolePage");
+                    b.ToTable("RolePages");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserConnection", b =>
@@ -434,7 +436,7 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserSetting");
+                    b.ToTable("UserSettings");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.District", b =>
@@ -470,7 +472,7 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasIndex("ProvinceId");
 
-                    b.ToTable("District");
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.Ethnic", b =>
@@ -481,18 +483,13 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<Guid?>("NationalId")
+                    b.Property<Guid>("NationalId")
                         .HasColumnType("RAW(16)");
 
                     b.Property<string>("UnsignName")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR2(256)")
-                        .HasMaxLength(256)
-                        .IsUnicode(false);
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("Id");
 
@@ -508,9 +505,7 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("RAW(16)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("UnsignName")
                         .HasColumnType("NVARCHAR2(2000)");
@@ -543,7 +538,7 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasIndex("NationalId");
 
-                    b.ToTable("Province");
+                    b.ToTable("Provinces");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.Religion", b =>
@@ -553,11 +548,9 @@ namespace LIS.Core.Infrustructure.Migrations
                         .HasColumnType("RAW(16)");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<Guid?>("NationalId")
+                    b.Property<Guid>("NationalId")
                         .HasColumnType("RAW(16)");
 
                     b.Property<string>("UnsignName")
@@ -640,13 +633,13 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.HasOne("LIS.Core.Domain.AggregateModels.TenantAggregate.Page", "Page")
                         .WithMany("TenantPages")
                         .HasForeignKey("PageId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("LIS.Core.Domain.AggregateModels.TenantAggregate.Tenant", "Tenant")
                         .WithMany("TenantPages")
                         .HasForeignKey("TenantId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
@@ -667,15 +660,11 @@ namespace LIS.Core.Infrustructure.Migrations
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.RolePage", b =>
                 {
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", null)
+                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", "Role")
                         .WithMany("RolePages")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", "Role")
-                        .WithMany()
-                        .HasForeignKey("RoleId1");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserConnection", b =>
@@ -707,9 +696,11 @@ namespace LIS.Core.Infrustructure.Migrations
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.Ethnic", b =>
                 {
-                    b.HasOne("LIS.Infrastructure.Domain.SystemAggregate.National", null)
+                    b.HasOne("LIS.Infrastructure.Domain.SystemAggregate.National", "National")
                         .WithMany("Ethnics")
-                        .HasForeignKey("NationalId");
+                        .HasForeignKey("NationalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.Province", b =>
@@ -721,9 +712,11 @@ namespace LIS.Core.Infrustructure.Migrations
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.Religion", b =>
                 {
-                    b.HasOne("LIS.Infrastructure.Domain.SystemAggregate.National", null)
+                    b.HasOne("LIS.Infrastructure.Domain.SystemAggregate.National", "National")
                         .WithMany("Religions")
-                        .HasForeignKey("NationalId");
+                        .HasForeignKey("NationalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>

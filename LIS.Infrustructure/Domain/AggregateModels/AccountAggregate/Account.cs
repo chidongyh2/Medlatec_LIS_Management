@@ -7,12 +7,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LIS.Infrastructure.Domain.AccountAggregate
 {
-    public class Account : IdentityUser<Guid>, IAggregateRoot
+    public class Account : IdentityUser<Guid>
+
     {
         public bool IsActive { get; private set; }
+        [Required, MaxLength(250)]
         public string FirstName { get; private set; }
+        [Required, MaxLength(250)]
         public string LastName { get; private set; }
+        [MaxLength(500)]
         public string ProfileImageUrl { get; private set; }
+        [MaxLength(500)]
         public string Address { get; private set; }
         public Guid TenantId { get; private set; }
         public bool IsDelete { get; private set; }
@@ -66,7 +71,7 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
             Address = address;
             PasswordHash = passwordHash;
             PasswordSalt = passwordSalt;
-
+            TenantId = Id;
         }
 
         public void UpdateInfo(string firstName, string lastName, string profileImageUrl, string phoneNumber, string address)

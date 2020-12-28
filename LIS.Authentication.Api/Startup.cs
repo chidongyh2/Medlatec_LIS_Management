@@ -1,9 +1,13 @@
 using AspNet.Security.OpenIdConnect.Primitives;
+using LIS.Authentication.Api.Resources;
 using LIS.Authentication.Helpers;
 using LIS.Authentication.Infrastructure;
 using LIS.Authentication.Services;
 using LIS.Infrastructure.Domain.AccountAggregate;
+using LIS.Infrastructure.IServices;
 using LIS.Infrastructure.Localization;
+using LIS.Infrastructure.Resources;
+using LIS.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -88,6 +92,10 @@ namespace LIS.Authentication.Api
                 opts.SignIn.RequireConfirmedEmail = false;
                 opts.User.RequireUniqueEmail = false;
             });
+
+            // initialize lifecycle service
+            services.AddScoped<IResourceService<SharedResource>, ResourceService<SharedResource>>();
+            services.AddScoped<IResourceService<AuthResource>, ResourceService<AuthResource>>();
 
         }
 

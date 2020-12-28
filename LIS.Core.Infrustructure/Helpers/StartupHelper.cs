@@ -6,6 +6,9 @@ using LIS.Infrastructure.Constants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
+using LIS.Infrastructure.InitializationStage;
+using LIS.Core.Infrustructure.Initializations;
+using LIS.Core.Infrastructure.SeedData;
 
 namespace LIS.Core.Api.Helpers
 {
@@ -13,8 +16,12 @@ namespace LIS.Core.Api.Helpers
     {
         public static IServiceCollection AddIoC(this IServiceCollection services, IConfiguration configuration)
         {
+            // init migration, seed data
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            //services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
+            services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
+            services.AddTransient<IInitializationStage, PageSeedInitialization>();
+            services.AddTransient<IInitializationStage, SeedRoleInitialization>();
+            services.AddTransient<IInitializationStage, UserAccountInitialization>();
             return services;
         }
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)

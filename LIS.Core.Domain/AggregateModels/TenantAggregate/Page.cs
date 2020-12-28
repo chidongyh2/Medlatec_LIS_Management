@@ -18,26 +18,31 @@ namespace LIS.Core.Domain.AggregateModels.TenantAggregate
         /// <summary>
         ///  Tên trang
         /// </summary>
+        [Required, MaxLength(250)]
         public string Name { get; private set; }
         public string UnsignName { get; private set; }
         /// <summary>
         ///  Mô tả
         /// </summary>
+        [Required, MaxLength(500)]
         public string Description { get; private set; }
 
         /// <summary>
         /// Đường dẫn Id của trang.
         /// </summary>
+        [MaxLength(250)]
         public string IdPath { get; private set; }
 
         /// <summary>
         /// Icon của trang.
         /// </summary>
+        [MaxLength(250)]
         public string Icon { get; private set; }
 
         /// <summary>
         /// Mầy nền của trang.
         /// </summary>
+        [MaxLength(500)]
         public string BgColor { get; private set; }
 
         /// <summary>
@@ -48,6 +53,7 @@ namespace LIS.Core.Domain.AggregateModels.TenantAggregate
         /// <summary>
         /// Thứ tự sắp xếp theo thứ tự hiển thị.
         /// </summary>
+        [MaxLength(250)]
         public string OrderPath { get; private set; }
 
         /// <summary>
@@ -65,8 +71,10 @@ namespace LIS.Core.Domain.AggregateModels.TenantAggregate
         /// </summary>
         public int ChildCount { get; private set; }
 
+        [MaxLength(500)]
         public string Url { get; private set; }
 
+        [Required]
         public PageType Type { get; private set; }
 
         public virtual ISet<TenantPage> TenantPages { get; private set; }

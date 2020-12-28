@@ -1,5 +1,6 @@
 ﻿using LIS.Infrastructure.SeedWorks;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LIS.Infrastructure.Domain.AccountAggregate
 {
@@ -7,6 +8,7 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
     {
         public Guid RoleId { get; set; }
         public int PageId { get; set; }
+        [Required]
         public int Permissions { get; set; }
         public virtual Role Role { get; private set; }
         public RolePage(Guid roleId, int pageId, int permissions)

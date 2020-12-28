@@ -4,6 +4,7 @@ using LIS.Infrastructure.ModelMetas;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace LIS.Infrastructure.Domain.AccountAggregate
@@ -11,7 +12,9 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
     public class Role : IdentityRole<Guid>
     {
         public Guid TenantId { get; private set; }
+        [MaxLength(500)]
         public string Description { get; private set; }
+        [MaxLength(250)]
         public string Type { get; private set; }
         public virtual ISet<RolePage> RolePages { get; private set; }
         public virtual ISet<AccountRole> AccountRoles { get; private set; }

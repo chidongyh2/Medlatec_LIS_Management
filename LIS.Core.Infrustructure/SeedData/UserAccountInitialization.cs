@@ -8,20 +8,15 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LIS.Core.Infrustructure.SeedData
+namespace LIS.Core.Infrastructure.SeedData
 {
     public class UserAccountInitialization : IInitializationStage
     {
-        public int Order => 1;
-        private readonly IUserAccountRepository _userAccountRepository;
+        public int Order => 5;
         private readonly CoreDbContext _context;
-        private readonly IRoleRepository _roleRepository;
-        public UserAccountInitialization(CoreDbContext context, IRoleRepository roleRepository,
-            IUserAccountRepository userAccountRepository)
+        public UserAccountInitialization(CoreDbContext context)
         {
             _context = context;
-            _userAccountRepository = userAccountRepository;
-            _roleRepository = roleRepository;
         }
 
         public async Task ExecuteAsync()
@@ -33,7 +28,8 @@ namespace LIS.Core.Infrustructure.SeedData
                 var passwordHash = GenerateHelper.GetInputPasswordHash("123456", passwordSalt);
                 var userAccount = new Account("ngoquy97it@gmail.com", "Ngô Văn",
                     "Quý", null, null, null, true, Convert.ToBase64String(passwordHash), passwordSalt);
-                var superAdminRole = await _roleRepository.GetRoleByRoleName(AuthRole.SuperAdmin);
+                var role = _context.Set<Role>().ToList();
+                var superAdminRole = _context.Set<Role>().Where(x => x.Name == AuthRole.SuperAdmin).FirstOrDefault();
                 userAccount.SetRole(superAdminRole.Id);
                 _context.Set<Account>().Add(userAccount);
                 _context.SaveChanges();

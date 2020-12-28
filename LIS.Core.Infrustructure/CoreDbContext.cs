@@ -3,7 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using LIS.Core.Domain.AggregateModels.TenantAggregate;
 using LIS.Infrastructure.Domain.AccountAggregate;
+using LIS.Infrastructure.Domain.SystemAggregate;
 using LIS.Infrastructure.Oracle;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -31,6 +33,14 @@ namespace LIS.Core.Infrastructure
             #region Table Mapping
             builder.Entity<IdentityUserToken<Guid>>(x => x.ToTable("UserTokens"));
             builder.Entity<UserConnection>(x => x.ToTable("UserConnections"));
+            builder.Entity<TenantPage>(x => x.ToTable("TenantPages"));
+            builder.Entity<National>(x => x.ToTable("Nationals"));
+            builder.Entity<Religion>(x => x.ToTable("Religions"));
+            builder.Entity<Ethnic>(x => x.ToTable("Ethnics"));
+            builder.Entity<District>(x => x.ToTable("Districts"));
+            builder.Entity<Province>(x => x.ToTable("Provinces"));
+            builder.Entity<UserSetting>(x => x.ToTable("UserSettings"));
+            builder.Entity<RolePage>(x => x.ToTable("RolePages"));
             #endregion
         }
 

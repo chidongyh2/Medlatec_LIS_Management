@@ -1,7 +1,10 @@
+using LIS.Core.Infrastructure;
+using LIS.Infrastructure.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Oracle.ManagedDataAccess.Client;
 using System.IO;
 
 namespace LIS.Core.Api
@@ -10,22 +13,28 @@ namespace LIS.Core.Api
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Run();
+            CreateHostBuilder(args).Build().StartInitializationProcess().Run();
         }
 
-        public static IWebHost CreateWebHostBuilder(string[] args) =>
-           WebHost.CreateDefaultBuilder(args)
-               .UseKestrel(o => { o.Limits.MaxRequestBodySize = null; })
-               .UseContentRoot(Directory.GetCurrentDirectory())
-               .ConfigureAppConfiguration((hostingContext, config) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+           Host.CreateDefaultBuilder(args)
+               .ConfigureWebHostDefaults(webuilder =>
                {
-                   config
-                       .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
-                       .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
-                       .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json", true)
-                       .AddEnvironmentVariables();
-               })
-               .UseStartup<Startup>()
-           .Build();
+                   webuilder.UseContentRoot(Directory.GetCurrentDirectory())
+                    .UseStartup<Startup>()
+                   .ConfigureAppConfiguration((hostingContext, config) =>
+                   {
+                       config
+                           .SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
+                           .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true, true)
+                           .AddJsonFile($"configuration.{hostingContext.HostingEnvironment.EnvironmentName}.json", true)
+                           .AddEnvironmentVariables();
+
+                       var currentConfig = config.Build();
+                       var connectionString = currentConfig.GetConnectionString("CoreConnectionString");
+                       var connection = new OracleConnection(currentConfig.GetConnectionString("CoreConnectionString"));
+                       config.AddEntityFrameworkConfig<CoreDbContext>(connection);
+                   });
+               });
     }
 }

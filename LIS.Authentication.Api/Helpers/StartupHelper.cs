@@ -44,7 +44,6 @@ namespace LIS.Authentication.Helpers
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
-            services.AddTransient<IInitializationStage, SeedRoleInitialization>();
             services.AddTransient<IInitializationStage, SeedClientInitialization>();
             return services;
         }

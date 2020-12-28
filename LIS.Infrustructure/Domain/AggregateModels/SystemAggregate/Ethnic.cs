@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LIS.Infrastructure.Domain.SystemAggregate
 {
@@ -18,6 +19,8 @@ namespace LIS.Infrastructure.Domain.SystemAggregate
         /// Tên không dấu tìm kiếm.
         /// </summary>
         public string UnsignName { get; set; }
+        public Guid NationalId { get; private set; }
+        public virtual National National { get; private set; }
     }
 
 }

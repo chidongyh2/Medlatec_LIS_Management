@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5aris57yG9aeSIrKIogjaHJ12kKq9F/xFMOVXMLgUDgZswsgsZnVOMoupQazXK5em6z3svNuxheL5roN2/7tIw==",
+  "dgSpecHash": "N9Y2/DghCS8N7tqRJ+mqzZHTf/Ppn/V5FMJs+yJYwDDfKgYx3gmlV66XqiGQjzJjagVudJEwBUmUVBHLMj+Fcw==",
   "success": true,
   "projectFilePath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrastructure.Oracle\\LIS.Infrastructure.Oracle.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\bouncycastle.netcore\\1.8.8\\bouncycastle.netcore.1.8.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\identitymodel\\4.4.0\\identitymodel.4.4.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\identityserver4\\4.1.1\\identityserver4.4.1.1.nupkg.sha512",
@@ -128,7 +129,7 @@
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.dispatchproxy\\4.3.0\\system.reflection.dispatchproxy.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.emit\\4.3.0\\system.reflection.emit.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",
-    "C:\\Users\\User\\.nuget\\packages\\system.reflection.emit.lightweight\\4.3.0\\system.reflection.emit.lightweight.4.3.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\system.reflection.emit.lightweight\\4.7.0\\system.reflection.emit.lightweight.4.7.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.metadata\\1.4.1\\system.reflection.metadata.1.4.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",

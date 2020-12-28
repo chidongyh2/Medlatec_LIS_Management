@@ -13,11 +13,6 @@ namespace LIS.Core.Infrastructure.EntityConfigurations
                 .HasForeignKey(t => t.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(t => t.RolePages)
-                .WithOne()
-                .HasForeignKey(t => t.RoleId)
-                .OnDelete(DeleteBehavior.Cascade);
-
             builder.ToTable("Roles").HasKey(x => x.Id);
         }
     }
