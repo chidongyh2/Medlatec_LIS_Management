@@ -1,4 +1,5 @@
 ﻿using LIS.Infrastructure.Domain.AccountAggregate;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +16,10 @@ namespace LIS.Authentication.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            #region Table Mapping
+            builder.Entity<Account>(x => x.ToTable("Accounts"));
+            builder.Entity<AccountSetting>(x => x.ToTable("AccountSettings"));
+            #endregion
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }

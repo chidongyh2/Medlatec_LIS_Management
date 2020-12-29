@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oracle.EntityFrameworkCore.Metadata;
 
-namespace LIS.Authentication.Api.Migrations.IdentityServer.ConfigurationDb
+namespace LIS.Authentication.Api.Data.Migrations.IdentityServer.ConfigurationDb
 {
     public partial class InitialIdentityServerConfigurationDbMigration : Migration
     {

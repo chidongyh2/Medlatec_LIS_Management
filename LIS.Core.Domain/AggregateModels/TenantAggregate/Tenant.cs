@@ -42,6 +42,18 @@ namespace LIS.Core.Domain.AggregateModels.TenantAggregate
             UnsignName = $"{Name.StripVietnameseChars().ToUpper()} {email?.StripVietnameseChars().ToUpper()} {phoneNumber?.StripVietnameseChars().ToUpper()}";
         }
 
+        public Tenant(string name, string email, string phoneNumber, string address, bool isActive, string note, string logo)
+        {
+            Name = name.Trim();
+            Email = email?.Trim();
+            PhoneNumber = phoneNumber?.Trim();
+            Address = address?.Trim();
+            IsActive = isActive;
+            Note = note?.Trim();
+            Logo = logo?.Trim();
+            UnsignName = $"{Name.StripVietnameseChars().ToUpper()} {email?.StripVietnameseChars().ToUpper()} {phoneNumber?.StripVietnameseChars().ToUpper()}";
+        }
+
         public void SetActive(bool isActive)
         {
             IsActive = isActive;

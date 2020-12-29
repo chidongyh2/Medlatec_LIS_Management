@@ -9,9 +9,13 @@
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.10" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\LIS.Core.Infrustructure\LIS.Core.Infrustructure.csproj" />
+    <ProjectReference Include="..\LIS.Core.Infrustructure\LIS.Core.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>

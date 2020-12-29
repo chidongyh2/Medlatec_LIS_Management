@@ -3,7 +3,6 @@ using LIS.Core.Domain.IRepository;
 using LIS.Core.Domain.Resources;
 using LIS.Core.Infrastructure;
 using LIS.Core.Infrastructure.Repository;
-using LIS.Core.Infrustructure;
 using LIS.Infrastructure.IServices;
 using LIS.Infrastructure.Localization;
 using LIS.Infrastructure.Mvc;
@@ -47,7 +46,7 @@ namespace LIS.Core.Api
                     options
                         .UseOracle(Configuration.GetConnectionString("CoreConnectionString"), ops =>
                         {
-                            ops.MigrationsAssembly("LIS.Core.Infrustructure");
+                            ops.MigrationsAssembly("LIS.Core.Infrastructure");
                             ops.MigrationsHistoryTable("__EFMigrationsHistory");
                         }))
                 .AddScoped<IDbConnection>(sp =>

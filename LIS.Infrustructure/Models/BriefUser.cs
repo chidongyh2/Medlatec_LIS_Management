@@ -13,7 +13,7 @@ namespace LIS.Infrastructure.Models
         /// <summary>
         /// Mã khách hàng (Công ty) sử dụng hệ thống.
         /// </summary>
-        public string TenantId { get; set; }
+        public Guid TenantId { get; set; }
 
         /// <summary>
         /// Tên đăng nhập.

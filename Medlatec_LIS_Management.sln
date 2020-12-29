@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIS.Core.Api", "LIS.Core.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIS.Core.Domain", "LIS.Core.Domain\LIS.Core.Domain.csproj", "{232EA503-DD95-405C-A133-7BFBA024381C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIS.Core.Infrustructure", "LIS.Core.Infrustructure\LIS.Core.Infrustructure.csproj", "{4349948F-8B22-4556-B59D-40F5639FE881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIS.Core.Infrastructure", "LIS.Core.Infrustructure\LIS.Core.Infrastructure.csproj", "{4349948F-8B22-4556-B59D-40F5639FE881}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LIS.Infrastructure.Oracle", "LIS.Infrastructure.Oracle\LIS.Infrastructure.Oracle.csproj", "{8EAB923F-3685-46E9-8E7D-25C4D043D538}"
 EndProject

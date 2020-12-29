@@ -31,8 +31,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj": {
-                "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj"
+              "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj": {
+                "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj"
               }
             }
           }
@@ -226,12 +226,12 @@
         }
       }
     },
-    "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj": {
+    "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj",
-        "projectName": "LIS.Core.Infrustructure",
-        "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj",
+        "projectUniqueName": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj",
+        "projectName": "LIS.Core.Infrastructure",
+        "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
         "outputPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\obj\\",
         "projectStyle": "PackageReference",

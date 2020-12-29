@@ -8,10 +8,9 @@ namespace LIS.Core.Infrastructure.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder.HasMany(e => e.UserConnections)
+            builder.HasMany(e => e.Logins)
                 .WithOne()
                 .HasForeignKey(e => e.UserId)
-                .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(e => e.AccountRoles)
@@ -19,16 +18,12 @@ namespace LIS.Core.Infrastructure.EntityConfigurations
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(e => e.UserSettings)
+            builder.HasMany(e => e.AccountSettings)
                 .WithOne()
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasIndex(t => new { t.Email })
-                .IsUnique();
-
             builder.ToTable("Accounts").HasKey(x => x.Id);
-
         }
     }
 }

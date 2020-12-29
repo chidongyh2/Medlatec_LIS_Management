@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Oracle.EntityFrameworkCore.Metadata;
 
-namespace LIS.Core.Infrustructure.Migrations
+namespace LIS.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
     partial class CoreDbContextModelSnapshot : ModelSnapshot
@@ -252,10 +252,6 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("RAW(16)")
-                        .HasMaxLength(16);
-
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("NVARCHAR2(2000)");
 
@@ -281,9 +277,6 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -294,106 +287,7 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountRole", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("RAW(16)");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AccountRoles");
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.Role", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("NVARCHAR2(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("NVARCHAR2(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<Guid>("TenantId")
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("NVARCHAR2(250)")
-                        .HasMaxLength(250);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.RolePage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<int>("PageId")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<int>("Permissions")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("RAW(16)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("RolePages");
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserConnection", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasColumnType("NVARCHAR2(450)");
-
-                    b.Property<string>("ProviderKey")
-                        .HasColumnType("NVARCHAR2(450)");
-
-                    b.Property<Guid?>("ConnectionId")
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("RAW(16)");
-
-                    b.HasKey("LoginProvider", "ProviderKey");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserConnections");
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserSetting", b =>
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountSetting", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -436,7 +330,67 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserSettings");
+                    b.ToTable("AccountSettings");
+                });
+
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.Role", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("NVARCHAR2(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<Guid>("TenantId")
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("NVARCHAR2(250)")
+                        .HasMaxLength(250);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.RolePage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<int>("Permissions")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("RAW(16)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RolePages");
                 });
 
             modelBuilder.Entity("LIS.Infrastructure.Domain.SystemAggregate.District", b =>
@@ -609,6 +563,46 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("NVARCHAR2(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("NVARCHAR2(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("RAW(16)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("RAW(16)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUserRole<Guid>");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.Property<Guid>("UserId")
@@ -625,7 +619,16 @@ namespace LIS.Core.Infrustructure.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountRole", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasDiscriminator().HasValue("AccountRole");
                 });
 
             modelBuilder.Entity("LIS.Core.Domain.AggregateModels.TenantAggregate.TenantPage", b =>
@@ -643,18 +646,12 @@ namespace LIS.Core.Infrustructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountRole", b =>
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountSetting", b =>
                 {
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", "Role")
-                        .WithMany("AccountRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", "Account")
-                        .WithMany("AccountRoles")
+                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", null)
+                        .WithMany("AccountSettings")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
@@ -663,24 +660,6 @@ namespace LIS.Core.Infrustructure.Migrations
                     b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", "Role")
                         .WithMany("RolePages")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserConnection", b =>
-                {
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", null)
-                        .WithMany("UserConnections")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.UserSetting", b =>
-                {
-                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", null)
-                        .WithMany("UserSettings")
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -737,12 +716,36 @@ namespace LIS.Core.Infrustructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", null)
+                        .WithMany("Logins")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
                     b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("LIS.Infrastructure.Domain.AccountAggregate.AccountRole", b =>
+                {
+                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Role", "Role")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LIS.Infrastructure.Domain.AccountAggregate.Account", "Account")
+                        .WithMany("AccountRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

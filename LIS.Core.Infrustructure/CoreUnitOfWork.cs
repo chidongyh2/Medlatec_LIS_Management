@@ -1,5 +1,4 @@
-﻿using LIS.Core.Infrastructure;
-using LIS.Infrastructure.SeedWorks;
+﻿using LIS.Infrastructure.SeedWorks;
 using LIS.Infrastructure.UowInterceptor.Abstracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -8,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LIS.Core.Infrustructure
+namespace LIS.Core.Infrastructure
 {
     public class CoreUnitOfWork : IUnitOfWork
     {

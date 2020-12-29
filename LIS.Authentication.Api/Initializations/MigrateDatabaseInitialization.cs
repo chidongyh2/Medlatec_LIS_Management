@@ -8,10 +8,9 @@ namespace LIS.Authentication.Initializations
 {
     public class MigrateDatabaseInitialization : IInitializationStage
     {
-        private readonly IdentityDbContext _dbContext;
         private readonly PersistedGrantDbContext _persistedGrantDbContext;
         private readonly ConfigurationDbContext _configurationDbContext;
-
+        private readonly IdentityDbContext _dbContext;
         public MigrateDatabaseInitialization(
             IdentityDbContext dbContext,
             PersistedGrantDbContext persistedGrantDbContext,
@@ -26,9 +25,9 @@ namespace LIS.Authentication.Initializations
 
         public async Task ExecuteAsync()
         {
+            await _dbContext.Database.MigrateAsync();
             await _configurationDbContext.Database.MigrateAsync();
             await _persistedGrantDbContext.Database.MigrateAsync();
-            await _dbContext.Database.MigrateAsync();
         }
     }
 }

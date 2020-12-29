@@ -3,7 +3,7 @@ using System;
 
 namespace LIS.Infrastructure.Domain.AccountAggregate
 {
-    public class UserSetting : ModifierTrackingEntity
+    public class AccountSetting : ModifierTrackingEntity
     {
         /// <summary>
         /// Mã người dùng

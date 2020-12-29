@@ -21,7 +21,7 @@ namespace LIS.Core.Api.Helpers
             services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
             services.AddTransient<IInitializationStage, PageSeedInitialization>();
             services.AddTransient<IInitializationStage, SeedRoleInitialization>();
-            services.AddTransient<IInitializationStage, UserAccountInitialization>();
+            services.AddTransient<IInitializationStage, SeedTenantInitialization>();
             return services;
         }
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)

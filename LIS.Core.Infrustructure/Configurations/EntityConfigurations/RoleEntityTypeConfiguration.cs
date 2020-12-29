@@ -12,8 +12,6 @@ namespace LIS.Core.Infrastructure.EntityConfigurations
                 .WithOne(r => r.Role)
                 .HasForeignKey(t => t.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            builder.ToTable("Roles").HasKey(x => x.Id);
         }
     }
 }

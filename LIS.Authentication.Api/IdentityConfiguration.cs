@@ -59,7 +59,7 @@ namespace LIS.Authentication
                     AllowAccessTokensViaBrowser = true,
                     RequireConsent = false,
                     AllowOfflineAccess = true,
-                    AccessTokenType = AccessTokenType.Reference,
+                    AccessTokenType = AccessTokenType.Jwt,
                     AlwaysIncludeUserClaimsInIdToken = true,
                     AllowedScopes =
                     {

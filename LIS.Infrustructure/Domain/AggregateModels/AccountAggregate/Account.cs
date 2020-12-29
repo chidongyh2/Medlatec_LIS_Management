@@ -22,14 +22,11 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
         public Guid TenantId { get; private set; }
         public bool IsDelete { get; private set; }
 
-        [MaxLength(16)]
-        public byte[] PasswordSalt { get; private set; }
-
         [NotMapped]
         public string FullName => $"{FirstName} {LastName}";
         public virtual IList<AccountRole> AccountRoles { get; private set; } = new List<AccountRole>();
-        public virtual IList<UserConnection> UserConnections { get; private set; } = new List<UserConnection>();
-        public virtual IList<UserSetting> UserSettings { get; private set; } = new List<UserSetting>();
+        public virtual IList<IdentityUserLogin<Guid>> Logins { get; } = new List<IdentityUserLogin<Guid>>();
+        public virtual IList<AccountSetting> AccountSettings { get; private set; } = new List<AccountSetting>();
 
         public Account()
         {
@@ -59,7 +56,7 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
             Address = address;
         }
 
-        public Account(string email, string firstName, string lastName, string profileImageUrl, string phoneNumber, string address, bool isActive, string passwordHash, byte[] passwordSalt) : this()
+        public Account(string email, string firstName, string lastName, string profileImageUrl, string phoneNumber, string address, bool isActive, string passwordHash) : this()
         {
             FirstName = firstName;
             LastName = lastName;
@@ -70,7 +67,6 @@ namespace LIS.Infrastructure.Domain.AccountAggregate
             PhoneNumber = phoneNumber;
             Address = address;
             PasswordHash = passwordHash;
-            PasswordSalt = passwordSalt;
             TenantId = Id;
         }
 

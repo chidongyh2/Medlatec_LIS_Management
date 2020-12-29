@@ -13,8 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LIS.Core.Infrastructure
 {
-    public class CoreDbContext : IdentityDbContext<Account, Role, Guid, IdentityUserClaim<Guid>,
-        AccountRole, UserConnection, IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>, IDbContext
+    public class CoreDbContext : IdentityDbContext<Account, Role, Guid>, IDbContext
     {
         private readonly Lazy<EntityQueryFilterProvider> _filterProviderInitializer = new Lazy<EntityQueryFilterProvider>();
         public CoreDbContext(DbContextOptions<CoreDbContext> options)
@@ -31,15 +30,13 @@ namespace LIS.Core.Infrastructure
             #endregion
 
             #region Table Mapping
-            builder.Entity<IdentityUserToken<Guid>>(x => x.ToTable("UserTokens"));
-            builder.Entity<UserConnection>(x => x.ToTable("UserConnections"));
             builder.Entity<TenantPage>(x => x.ToTable("TenantPages"));
             builder.Entity<National>(x => x.ToTable("Nationals"));
             builder.Entity<Religion>(x => x.ToTable("Religions"));
             builder.Entity<Ethnic>(x => x.ToTable("Ethnics"));
             builder.Entity<District>(x => x.ToTable("Districts"));
             builder.Entity<Province>(x => x.ToTable("Provinces"));
-            builder.Entity<UserSetting>(x => x.ToTable("UserSettings"));
+            builder.Entity<AccountSetting>(x => x.ToTable("AccountSettings"));
             builder.Entity<RolePage>(x => x.ToTable("RolePages"));
             #endregion
         }

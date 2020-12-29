@@ -18,7 +18,6 @@ namespace LIS.Core.Infrastructure.EntityConfigurations
                 .WithMany(r => r.AccountRoles)
                 .HasForeignKey(t => t.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
-            builder.ToTable("AccountRoles");
         }
     }
 }

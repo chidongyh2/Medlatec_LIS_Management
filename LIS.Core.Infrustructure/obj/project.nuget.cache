@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "L5ZZepbGL+lt8Cfu0s11n3FEoPbftFWMsXlUaWEYs9hRtvoZBqNtak1SYD6xp8+eWtyLWmFCT6vCICdg7F7vGQ==",
+  "dgSpecHash": "4+dYkFkAMwpTK8XxGWmD5DtajR0ernlT7sqcR7PCiiwIObgy+7YjsKW5kN2tzk4BMmwcflwK2GlGZEywGCBvHQ==",
   "success": true,
-  "projectFilePath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrustructure.csproj",
+  "projectFilePath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Core.Infrustructure\\LIS.Core.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\bouncycastle.netcore\\1.8.8\\bouncycastle.netcore.1.8.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\castle.core\\4.4.0\\castle.core.4.4.0.nupkg.sha512",

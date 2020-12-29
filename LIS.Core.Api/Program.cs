@@ -1,6 +1,5 @@
 using LIS.Core.Infrastructure;
 using LIS.Infrastructure.Extensions;
-using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;

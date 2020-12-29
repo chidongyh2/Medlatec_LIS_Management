@@ -1,13 +1,9 @@
 using AspNet.Security.OpenIdConnect.Primitives;
-using LIS.Authentication.Api.Resources;
 using LIS.Authentication.Helpers;
 using LIS.Authentication.Infrastructure;
 using LIS.Authentication.Services;
 using LIS.Infrastructure.Domain.AccountAggregate;
-using LIS.Infrastructure.IServices;
 using LIS.Infrastructure.Localization;
-using LIS.Infrastructure.Resources;
-using LIS.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
+using System;
 using System.Reflection;
 using System.Text.Json;
 
@@ -54,9 +51,9 @@ namespace LIS.Authentication.Api
                     .AddDefaultTokenProviders();
 
             services.AddIdentityServer()
-                   .AddDeveloperSigningCredential()
                    .AddAspNetIdentity<Account>()
                    .AddResourceOwnerValidator<ResourceOwnerPasswordValidator>()
+                   .AddDeveloperSigningCredential()
                    .AddConfigurationStore(opts =>
                    {
                        opts.ConfigureDbContext = co => co.UseOracle(Configuration.GetConnectionString("AuthConnectionString"), occ =>
@@ -80,23 +77,18 @@ namespace LIS.Authentication.Api
 
             services.Configure<IdentityOptions>(opts =>
             {
-                opts.Password.RequireDigit = true;
-                opts.Password.RequireLowercase = true;
-                opts.Password.RequireUppercase = true;
+                opts.Password.RequireDigit = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
                 opts.Password.RequireNonAlphanumeric = false;
                 opts.Password.RequiredUniqueChars = 0;
                 opts.Password.RequiredLength = 6;
                 opts.ClaimsIdentity.UserNameClaimType = OpenIdConnectConstants.Claims.Name;
                 opts.ClaimsIdentity.UserIdClaimType = OpenIdConnectConstants.Claims.Subject;
                 opts.ClaimsIdentity.RoleClaimType = OpenIdConnectConstants.Claims.Role;
-                opts.SignIn.RequireConfirmedEmail = false;
-                opts.User.RequireUniqueEmail = false;
+                opts.Lockout.MaxFailedAccessAttempts = 5;
+                opts.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
             });
-
-            // initialize lifecycle service
-            services.AddScoped<IResourceService<SharedResource>, ResourceService<SharedResource>>();
-            services.AddScoped<IResourceService<AuthResource>, ResourceService<AuthResource>>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

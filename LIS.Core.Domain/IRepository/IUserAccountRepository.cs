@@ -33,8 +33,6 @@ namespace LIS.Core.Domain.IRepository
 
         Task<bool> CheckUserNameExists(Guid id, string userName);
 
-        Task<bool> ValidateCredentialsAsync(string userName, string password);
-
         Task<bool> CheckEmailExists(Guid id, string email);
 
         Task<bool> CheckExistsByUserId(Guid userId);

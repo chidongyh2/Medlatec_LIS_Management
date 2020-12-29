@@ -258,12 +258,5 @@ namespace LIS.Core.Infrastructure.Repository
         {
             return await _userAccountRepository.GetAsync(isReadOnly, x => x.NormalizedUserName.Equals(userName.ToUpper().Trim()) && !x.IsDelete);
         }
-
-        public async Task<bool> ValidateCredentialsAsync(string userName, string password)
-        {
-            var userInfo = await GetInfoByUserName(userName);
-            byte[] passwordHash = GenerateHelper.GetInputPasswordHash(password.Trim(), userInfo.PasswordSalt);
-            return await _userAccountRepository.ExistAsync(x => x.UserName == userName && x.PasswordHash == Convert.ToBase64String(passwordHash));
-        }
     }
 }

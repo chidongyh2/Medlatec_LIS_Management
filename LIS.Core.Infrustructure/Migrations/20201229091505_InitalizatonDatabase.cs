@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oracle.EntityFrameworkCore.Metadata;
 
-namespace LIS.Core.Infrustructure.Migrations
+namespace LIS.Core.Infrastructure.Migrations
 {
-    public partial class InitialCoreDb : Migration
+    public partial class InitalizatonDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,12 +33,28 @@ namespace LIS.Core.Infrustructure.Migrations
                     ProfileImageUrl = table.Column<string>(maxLength: 500, nullable: true),
                     Address = table.Column<string>(maxLength: 500, nullable: true),
                     TenantId = table.Column<Guid>(nullable: false),
-                    IsDelete = table.Column<bool>(nullable: false),
-                    PasswordSalt = table.Column<byte[]>(maxLength: 16, nullable: true)
+                    IsDelete = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Accounts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    TenantId = table.Column<Guid>(nullable: false),
+                    Description = table.Column<string>(maxLength: 500, nullable: true),
+                    Type = table.Column<string>(maxLength: 250, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,23 +104,6 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Roles",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    TenantId = table.Column<Guid>(nullable: false),
-                    Description = table.Column<string>(maxLength: 500, nullable: true),
-                    Type = table.Column<string>(maxLength: 250, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Tenants",
                 columns: table => new
                 {
@@ -131,6 +130,34 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AccountSettings",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
+                    LastUpdatedDate = table.Column<DateTimeOffset>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    CreatedById = table.Column<string>(nullable: true),
+                    LastUpdatedBy = table.Column<string>(nullable: true),
+                    LastUpdatedById = table.Column<string>(nullable: true),
+                    IsDeleted = table.Column<bool>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false),
+                    Key = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true),
+                    GroupKey = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AccountSettings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AccountSettings_Accounts_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -152,20 +179,19 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserConnections",
+                name: "AspNetUserLogins",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
-                    ConnectionId = table.Column<Guid>(nullable: true)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserConnections", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_UserConnections_Accounts_UserId",
+                        name: "FK_AspNetUserLogins_Accounts_UserId",
                         column: x => x.UserId,
                         principalTable: "Accounts",
                         principalColumn: "Id",
@@ -173,35 +199,7 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserSettings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
-                    LastUpdatedDate = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    CreatedById = table.Column<string>(nullable: true),
-                    LastUpdatedBy = table.Column<string>(nullable: true),
-                    LastUpdatedById = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
-                    Key = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true),
-                    GroupKey = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserSettings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_UserSettings_Accounts_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "UserTokens",
+                name: "AspNetUserTokens",
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(nullable: false),
@@ -211,11 +209,76 @@ namespace LIS.Core.Infrustructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_UserTokens_Accounts_UserId",
+                        name: "FK_AspNetUserTokens_Accounts_UserId",
                         column: x => x.UserId,
                         principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
+                    RoleId = table.Column<Guid>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_Accounts_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Accounts",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RolePages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false),
+                    PageId = table.Column<int>(nullable: false),
+                    Permissions = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolePages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RolePages_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -282,70 +345,6 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AccountRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AccountRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AccountRoles_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AccountRoles_Accounts_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn),
-                    RoleId = table.Column<Guid>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RolePages",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false),
-                    PageId = table.Column<int>(nullable: false),
-                    Permissions = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RolePages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RolePages_Roles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "Roles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TenantPages",
                 columns: table => new
                 {
@@ -392,17 +391,6 @@ namespace LIS.Core.Infrustructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccountRoles_RoleId",
-                table: "AccountRoles",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accounts_Email",
-                table: "Accounts",
-                column: "Email",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "Accounts",
                 column: "NormalizedEmail");
@@ -414,14 +402,35 @@ namespace LIS.Core.Infrustructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_AccountSettings_UserId",
+                table: "AccountSettings",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
                 table: "AspNetUserClaims",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Districts_ProvinceId",
@@ -449,12 +458,6 @@ namespace LIS.Core.Infrustructure.Migrations
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "Roles",
-                column: "NormalizedName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_TenantPages_PageId",
                 table: "TenantPages",
                 column: "PageId");
@@ -463,28 +466,27 @@ namespace LIS.Core.Infrustructure.Migrations
                 name: "IX_TenantPages_TenantId",
                 table: "TenantPages",
                 column: "TenantId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserConnections_UserId",
-                table: "UserConnections",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserSettings_UserId",
-                table: "UserSettings",
-                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AccountRoles");
+                name: "AccountSettings");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
                 name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
                 name: "Districts");
@@ -502,28 +504,19 @@ namespace LIS.Core.Infrustructure.Migrations
                 name: "TenantPages");
 
             migrationBuilder.DropTable(
-                name: "UserConnections");
-
-            migrationBuilder.DropTable(
-                name: "UserSettings");
-
-            migrationBuilder.DropTable(
-                name: "UserTokens");
+                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Provinces");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "Pages");
 
             migrationBuilder.DropTable(
                 name: "Tenants");
-
-            migrationBuilder.DropTable(
-                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Nationals");

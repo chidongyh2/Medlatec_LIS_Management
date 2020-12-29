@@ -11,7 +11,7 @@ namespace LIS.Authentication.Api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            CreateHostBuilder(args).Build().StartInitializationProcess().Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

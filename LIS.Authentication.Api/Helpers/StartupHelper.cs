@@ -45,6 +45,7 @@ namespace LIS.Authentication.Helpers
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
             services.AddTransient<IInitializationStage, SeedClientInitialization>();
+            services.AddTransient<IInitializationStage, UserAccountInitialization>();
             return services;
         }
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
