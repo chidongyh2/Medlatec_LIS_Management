@@ -25,6 +25,7 @@ using System;
 using System.Data;
 using System.Reflection;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Medlatec.Core.Api
 {
@@ -41,6 +42,12 @@ namespace Medlatec.Core.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApiVersioning(options =>
+            {
+                options.ReportApiVersions = true;
+                options.AssumeDefaultVersionWhenUnspecified = true;
+                options.DefaultApiVersion = new ApiVersion(1, 0);
+            });
             services
                 .AddDbContext<CoreDbContext>(options =>
                     options

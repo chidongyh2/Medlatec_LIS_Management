@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Medlatec.Core.Application\Medlatec.Core.Application.csproj" />
     <ProjectReference Include="..\Medlatec.Core.Domain\Medlatec.Core.Domain.csproj" />
     <ProjectReference Include="..\Medlatec.Infrastructure.Oracle\Medlatec.Infrastructure.Oracle.csproj" />
-    <ProjectReference Include="..\Medlatec.Infrustructure\Medlatec.Infrastructure.csproj" />
+    <ProjectReference Include="..\Medlatec.Infrastructure\Medlatec.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

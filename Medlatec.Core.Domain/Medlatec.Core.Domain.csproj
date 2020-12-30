@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Medlatec.Infrustructure\Medlatec.Infrastructure.csproj" />
+    <ProjectReference Include="..\Medlatec.Infrastructure\Medlatec.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

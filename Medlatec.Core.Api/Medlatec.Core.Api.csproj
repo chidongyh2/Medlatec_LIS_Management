@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Medlatec.Core.Infrustructure\Medlatec.Core.Infrastructure.csproj" />
-    <ProjectReference Include="..\Medlatec.Infrustructure\Medlatec.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
