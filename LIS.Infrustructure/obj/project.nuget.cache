@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z6rFjIdYV6OPkwG/3gszXWIQaEizwfo/3B4UzFb4GgCL746IV/WAQ0cTXZKOtbq3JxxV2wUOXdpGWA5Sf309jA==",
+  "dgSpecHash": "bRCEnQxCLe+XmRyCA4n6xIh88jkExOxlWmNcsspJ69xJuB+D58jiPbFLEW0f6gVEV+OaDMs1rfegnG5oAZOrWQ==",
   "success": true,
-  "projectFilePath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\LIS.Infrastructure.csproj",
+  "projectFilePath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\Medlatec.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\bouncycastle.netcore\\1.8.8\\bouncycastle.netcore.1.8.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\dapper\\2.0.78\\dapper.2.0.78.nupkg.sha512",

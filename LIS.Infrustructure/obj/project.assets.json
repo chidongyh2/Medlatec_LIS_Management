@@ -8460,9 +8460,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\LIS.Infrastructure.csproj",
-      "projectName": "LIS.Infrastructure",
-      "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\LIS.Infrastructure.csproj",
+      "projectUniqueName": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\Medlatec.Infrastructure.csproj",
+      "projectName": "Medlatec.Infrastructure",
+      "projectPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\Medlatec.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
       "outputPath": "D:\\Medlatec\\Medlatec_Core\\Medlatec_LIS_Management\\LIS.Infrustructure\\obj\\",
       "projectStyle": "PackageReference",

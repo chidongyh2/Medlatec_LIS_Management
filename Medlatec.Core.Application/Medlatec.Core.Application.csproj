@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Commands\Systems\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Medlatec.Infrustructure\Medlatec.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

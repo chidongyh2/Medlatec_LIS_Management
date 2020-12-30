@@ -1,9 +1,0 @@
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\bin\Debug\netcoreapp3.1\LIS.Core.Application.Read.deps.json
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\bin\Debug\netcoreapp3.1\LIS.Core.Application.Read.dll
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\bin\Debug\netcoreapp3.1\LIS.Core.Application.Read.pdb
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.csprojAssemblyReference.cache
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.AssemblyInfoInputs.cache
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.AssemblyInfo.cs
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.csproj.CoreCompileInputs.cache
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.dll
-D:\Medlatec\Medlatec_Core\Medlatec_LIS_Management\LIS.Core.Application.Read\obj\Debug\netcoreapp3.1\LIS.Core.Application.Read.pdb
