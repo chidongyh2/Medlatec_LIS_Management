@@ -24,7 +24,7 @@ namespace Medlatec.Core.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            // handler multiple tenant connection string to Here
             #region Configurations
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             #endregion

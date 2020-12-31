@@ -15,12 +15,15 @@ namespace Medlatec.Authentication.Services
     public class ProfileService : IProfileService
     {
         private readonly UserManager<Account> _userManager;
+        private readonly RoleManager<Role> _roleManager;
         private readonly IUserClaimsPrincipalFactory<Account> _claimsFactory;
 
-        public ProfileService(UserManager<Account> userManager, IUserClaimsPrincipalFactory<Account> claimsFactory)
+        public ProfileService(UserManager<Account> userManager, IUserClaimsPrincipalFactory<Account> claimsFactory,
+            RoleManager<Role> roleManager)
         {
             _userManager = userManager;
             _claimsFactory = claimsFactory;
+            _roleManager = roleManager;
         }
 
         public async Task GetProfileDataAsync(ProfileDataRequestContext context)
@@ -29,8 +32,7 @@ namespace Medlatec.Authentication.Services
             {
                 var subject = context.Subject ?? throw new ArgumentNullException(nameof(context.Subject));
 
-                var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault().Value;
-
+                 var subjectId = subject.Claims.Where(x => x.Type == "sub").FirstOrDefault().Value;
                 var user = await _userManager.FindByIdAsync(subjectId);
                 if (user == null)
                     throw new ArgumentException("Invalid subject identifier");

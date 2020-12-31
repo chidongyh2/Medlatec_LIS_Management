@@ -26,6 +26,8 @@ using System.Data;
 using System.Reflection;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
+using Dapper;
+using Medlatec.Infrastructure.Helpers;
 
 namespace Medlatec.Core.Api
 {
@@ -64,6 +66,10 @@ namespace Medlatec.Core.Api
                     return connection;
                 })
                 .AddUnitOfWorkInterceptors(AppDomain.CurrentDomain.GetAssemblies());
+            // fix Dapper GUID
+            SqlMapper.RemoveTypeMap(typeof(Guid));
+            SqlMapper.RemoveTypeMap(typeof(Guid?));
+            SqlMapper.AddTypeHandler(typeof(Guid), new GuidTypeHandler());
 
             services
                 .AddRouting(options => options.LowercaseUrls = true)
@@ -78,6 +84,8 @@ namespace Medlatec.Core.Api
 
             services.AddSwagger();
             services.ConfigureLocalization();
+            // Add resources support.            
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IDbContext, CoreDbContext>();
             services.AddScoped<IUnitOfWork, CoreUnitOfWork>();
@@ -94,7 +102,9 @@ namespace Medlatec.Core.Api
             services.AddScoped<ITenantPageRepository, TenantPageRepository>();
             services.AddScoped<ITenantRepository, TenantRepository>();
             services.AddScoped<IUserAccountRepository, UserAccountRepository>();
-            services.AddMediatR(typeof(Application.Assembly).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(Application.Assembly).GetTypeInfo().Assembly)
+                    .AddMediatR(typeof(Application.Write.Assembly).GetTypeInfo().Assembly)
+                    .AddMediatR(typeof(Application.Read.Assembly).GetTypeInfo().Assembly);
             services.AddCustomAuthentication(Configuration);
         }
 

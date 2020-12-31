@@ -1,6 +1,10 @@
-﻿namespace Medlatec.Infrastructure.Constants
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Medlatec.Infrastructure.Constants
 {
-    public enum PageContants
+    public enum PageId
     {
         None = -1,
 

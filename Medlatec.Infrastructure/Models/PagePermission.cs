@@ -4,9 +4,9 @@ namespace Medlatec.Infrastructure.Models
 {
     public class PagePermission
     {
-        public PageContants PageId { get; set; }
+        public PageId PageId { get; set; }
         public Permission[] Permissions { get; set; }
-        public PagePermission(PageContants pageId, Permission[] permissions)
+        public PagePermission(PageId pageId, Permission[] permissions)
         {
             PageId = pageId;
             Permissions = permissions;

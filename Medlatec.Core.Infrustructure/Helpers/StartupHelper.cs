@@ -35,7 +35,7 @@ namespace Medlatec.Core.Api.Helpers
                 {
                     var settings = configuration.GetSection("Authentication").Get<IdentitySettings>();
                     options.Authority = settings.Authority;
-                    options.RequireHttpsMetadata = settings.RequireHttpsMetadata;
+                    options.RequireHttpsMetadata = false;
                     options.ApiName = settings.ApiName;
                     options.ApiSecret = settings.ApiSecret;
                     //options.TokenRetriever = CustomTokenRetriever.FromHeaderAndQueryString();

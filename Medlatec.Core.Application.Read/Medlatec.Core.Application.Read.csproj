@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,8 +6,15 @@
 
   <ItemGroup>
     <Folder Include="TenantQuery\" />
-    <Folder Include="RoleQuery\" />
     <Folder Include="PageQuery\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Medlatec.Core.Application\Medlatec.Core.Application.csproj" />
   </ItemGroup>
 
 </Project>

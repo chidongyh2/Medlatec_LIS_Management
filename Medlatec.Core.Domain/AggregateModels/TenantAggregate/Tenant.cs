@@ -23,6 +23,10 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         public string Note { get; private set; }
         [MaxLength(500)]
         public string Logo { get; private set; }
+        [MaxLength(500)]
+        public string LearnerPortal { get; set; }
+        [MaxLength(500)]
+        public string AdminPortal { get; set; }
         public virtual IList<TenantPage> TenantPages { get; private set; }
 
         public Tenant()
