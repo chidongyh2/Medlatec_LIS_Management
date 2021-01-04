@@ -8,14 +8,14 @@ namespace Medlatec.Core.Application.Queries.PageQuery
 {
     public class SearchPagesQuery : SearchQuery, IRequest<SearchResult<PageSearchViewModel>>
     {
-        public Guid TenantId { get; private set; }
-        public bool IsActive { get; private set; }
-        public SearchPagesQuery(Guid tenantId, int page, int pageSize, string keyword)
+        public bool? IsActive { get; private set; }
+        public SearchPagesQuery(string keyword, string sort, int page, int pageSize, bool? isActive)
         {
-            TenantId = tenantId;
             Page = page;
             PageSize = pageSize;
             Keyword = keyword;
+            Sort = sort;
+            IsActive = isActive;
         }
     }
 }

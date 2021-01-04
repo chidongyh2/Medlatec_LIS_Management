@@ -2,7 +2,7 @@
   "Routes": [
     // BEGIN: Authentication
     {
-      "DownstreamPathTemplate": "/{everything}",
+      "DownstreamPathTemplate": "/connect/token",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -11,6 +11,19 @@
         }
       ],
       "UpstreamPathTemplate": "/auth/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseServiceDiscovery": false
+    },
+    {
+      "DownstreamPathTemplate": "/api/v{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v{version}/auth/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST" ],
       "UseServiceDiscovery": false
     },
@@ -26,11 +39,7 @@
       ],
       "UpstreamPathTemplate": "/api/v{version}/core/{everything}",
       "UpstreamHttpMethod": [ "Get", "Post" ],
-      "UseServiceDiscovery": false,
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "IdentityApiKey",
-        "AllowedScopes": [ "LIS_Core_Api" ]
-      }
+      "UseServiceDiscovery": false
     }
   ]
 }

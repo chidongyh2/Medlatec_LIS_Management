@@ -18,4 +18,8 @@
     <ProjectReference Include="..\Medlatec.Core.Infrustructure\Medlatec.Core.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Requests\" />
+  </ItemGroup>
+
 </Project>

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Medlatec.Core.Application.Queries;
+using Medlatec.Core.Application.Queries.PageQuery;
 using Medlatec.Infrastructure.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -7,23 +7,21 @@ using System.Threading.Tasks;
 
 namespace Medlatec.Core.Api.Controllers
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    [Produces("application/json")]
-    [Authorize]
-    public class AppsController : MedControllerBase
+    public class PagesController : MedControllerBase
     {
         private readonly IMediator _mediator;
-        public AppsController(IMediator mediator)
+        public PagesController(IMediator mediator)
         {
             _mediator = mediator;
         }
         [AcceptVerbs("GET")]
-        public async Task<IActionResult> InitApp()
+        public async Task<IActionResult> Search(string keyword, string sort, bool? isActive, int page = 1, int pageSize = 20)
         {
-            var appSettings = await _mediator.Send(new GetAppSettingsQuery(CurrentUser.Id, CurrentUser.TenantId));
-            appSettings.CurrentUser = CurrentUser;
-            return Ok(appSettings);
+            var result = await _mediator.Send(new SearchPagesQuery(keyword, sort, page, pageSize, isActive));
+            return Ok(result);
         }
     }
 }

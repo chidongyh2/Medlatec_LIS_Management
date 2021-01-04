@@ -1,11 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Medlatec.Web.ApiGateway
-{
-    public class configuration
+﻿{
+  "Routes": [
+    // BEGIN: Authentication
     {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/auth/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseServiceDiscovery": false
+    },
+    {
+      "DownstreamPathTemplate": "/api/v{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v{version}/auth/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "UseServiceDiscovery": false
+    },
+    // BEGIN: Core
+    {
+      "DownstreamPathTemplate": "/api/v{version}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v{version}/core/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "UseServiceDiscovery": false
     }
+  ]
 }

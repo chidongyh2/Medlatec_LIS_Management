@@ -30,7 +30,6 @@
         /// <summary>
         /// Mầy nền của trang.
         /// </summary>
-        public string BgColor { get; set; }
 
         /// <summary>
         /// Thứ tự hiển thị của trang.
@@ -48,5 +47,10 @@
         /// Số lượng trang con.
         /// </summary>
         public int ChildCount { get; set; }
+
+       /// <summary>
+       /// Loại trang
+       /// </summary>
+        public int Type { get; set; }
     }
 }

@@ -42,7 +42,7 @@ namespace Medlatec.Core.Application.Write.Pages
             {
                 pageInfo.SetParent(null);
             }
-            pageInfo.UpdateInfo(request.Name, request.Description, request.Icon.Trim(), request.BgColor.Trim(), request.Order, request.Url, request.IsActive);
+            pageInfo.UpdateInfo(request.Name, request.Description, request.Icon.Trim(), request.Order, request.Url, request.IsActive);
 
             var resultUpdatePage = await _pageRepository.Update(pageInfo);
             if (resultUpdatePage < 0)

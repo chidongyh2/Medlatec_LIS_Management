@@ -48,7 +48,7 @@ namespace Medlatec.Authentication.Helpers
                         context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant, "account_not_active");
                         return;
                     }
-                    var result = await _signInManager.CheckPasswordSignInAsync(user, context.Password, true);
+                    var result = await _signInManager.CheckPasswordSignInAsync(user, context.Password.Trim(), true);
                     if (result.Succeeded)
                     {
                         var sub = await _userManager.GetUserIdAsync(user);

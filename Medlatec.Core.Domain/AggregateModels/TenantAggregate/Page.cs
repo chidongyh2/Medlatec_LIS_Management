@@ -34,16 +34,18 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         public string IdPath { get; private set; }
 
         /// <summary>
+        /// Mã trang
+        /// </summary>
+        public string Code { get; private set; }
+        /// <summary>
+        /// Mã trang cha
+        /// </summary>
+        public string ParentCode { get; private set; }
+        /// <summary>
         /// Icon của trang.
         /// </summary>
         [MaxLength(250)]
         public string Icon { get; private set; }
-
-        /// <summary>
-        /// Mầy nền của trang.
-        /// </summary>
-        [MaxLength(500)]
-        public string BgColor { get; private set; }
 
         /// <summary>
         /// Thứ tự hiển thị của trang.
@@ -67,6 +69,11 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         public bool IsDelete { get; private set; }
 
         /// <summary>
+        /// Trạng thái đánh dấu xóa trang.
+        /// </summary>
+        public bool IsShowSidebar { get; private set; }
+
+        /// <summary>
         /// Số lượng trang con.
         /// </summary>
         public int ChildCount { get; private set; }
@@ -86,12 +93,11 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             Order = 0;
         }
 
-        public Page(int id, string name, string description, string icon, string bgColor, int order, int? parentId, string url, bool isActive, PageType type = PageType.Sub)
+        public Page(int id, string name, string description, string icon, int order, int? parentId, string url, bool isActive, PageType type = PageType.Sub)
         {
             Id = id;
             IsActive = isActive;
             Icon = icon;
-            BgColor = bgColor;
             Order = order;
             OrderPath = $"{id}.{order}";
             ParentId = parentId;
@@ -102,11 +108,10 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             Type = type;
         }
 
-        public void UpdateInfo(string name, string description, string icon, string bgColor, int order, string url, bool isActive)
+        public void UpdateInfo(string name, string description, string icon, int order, string url, bool isActive)
         {
             IsActive = isActive;
             Icon = icon;
-            BgColor = bgColor;
             Order = order;
             Url = url;
             Name = name;

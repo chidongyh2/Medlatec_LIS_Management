@@ -480,5 +480,40 @@ namespace Medlatec.Infrastructure.Extensions
             return names.LastOrDefault();
         }
 
+        public static string NormalizeForSearch(this string source)
+        {
+            return source.RemoveDiacritics().ToUpper();
+        }
+
+        public static string RemoveDiacritics(this string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            try
+            {
+                str = str.ToLower().Trim();
+                str = Regex.Replace(str, @"[\r|\n]", " ");
+                str = Regex.Replace(str, @"\s+", " ");
+                str = Regex.Replace(str, "[áàảãạâấầẩẫậăắằẳẵặ]", "a");
+                str = Regex.Replace(str, "[éèẻẽẹêếềểễệ]", "e");
+                str = Regex.Replace(str, "[iíìỉĩị]", "i");
+                str = Regex.Replace(str, "[óòỏõọơớờởỡợôốồổỗộ]", "o");
+                str = Regex.Replace(str, "[úùủũụưứừửữự]", "u");
+                str = Regex.Replace(str, "[yýỳỷỹỵ]", "y");
+                str = Regex.Replace(str, "[đ]", "d");
+
+                //Remove special character
+                str = Regex.Replace(str, "[\"`~!@#$%^&*()-+=?/>.<,{}[]|]\\]", "");
+                str = str.Replace("̀", "").Replace("̣", "").Replace("̉", "").Replace("̃", "").Replace("́", "");
+                return str;
+            }
+            catch (Exception)
+            {
+                return str;
+            }
+        }
+
+
     }
 }

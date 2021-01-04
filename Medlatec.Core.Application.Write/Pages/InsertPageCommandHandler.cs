@@ -31,7 +31,7 @@ namespace Medlatec.Core.Application.Write.Pages
             if (isIdExists)
                 return new ActionResultResponse(-1, _resourceService.GetString("Page already exists."));
 
-            var page = new Page(request.Id, request.Name, request.Description, request.Icon.Trim(), request.BgColor?.Trim(), request.Order , -1, request.Url, request.IsActive);
+            var page = new Page(request.Id, request.Name, request.Description, request.Icon.Trim(), request.Order , -1, request.Url, request.IsActive);
 
             if (request.ParentId.HasValue)
             {
