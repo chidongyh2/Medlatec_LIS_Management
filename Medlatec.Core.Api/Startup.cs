@@ -74,6 +74,7 @@ namespace Medlatec.Core.Api
             services
                 .AddRouting(options => options.LowercaseUrls = true)
                 .AddIoC(Configuration)
+                .AddValidations(Configuration)
                 .AddControllers();
 
             services.AddMvc().AddJsonOptions(opts =>

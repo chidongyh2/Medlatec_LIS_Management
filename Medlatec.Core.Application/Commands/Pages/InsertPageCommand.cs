@@ -13,26 +13,23 @@ namespace Medlatec.Core.Application.Commands.Pages
         public Guid TenantId { get; private set; }
         public bool IsActive { get; private set; }
         public string Icon { get; private set; }
-        public string BgColor { get; private set; }
         public int Order { get; private set; }
         public int? ParentId { get; private set; }
-        public bool IsPublic { get; private set; }
+        public bool IsShowSidebar { get; private set; }
         public string Url { get; private set; }
         public List<Guid> TenantIds { get; private set; }
         
-        public InsertPageCommand(int id, string name, string description, Guid tenantId, bool isActive, string icon, string bgColor,
-            int order, int? parentId, bool isPublic, string url, List<Guid> tenantIds)
+        public InsertPageCommand(int id, string name, string description, Guid tenantId, bool isActive, string icon,
+            int order, int? parentId, bool isShowSidebar, string url)
         {
             Id = id;
             TenantId = tenantId;
             IsActive = isActive;
             Icon = icon;
-            BgColor = bgColor;
             Order = order;
             ParentId = parentId;
-            IsPublic = isPublic;
+            IsShowSidebar = isShowSidebar;
             Url = url;
-            TenantIds = tenantIds;
             Name = name;
             Description = description;
         }

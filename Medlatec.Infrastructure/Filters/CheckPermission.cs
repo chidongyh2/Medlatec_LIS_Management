@@ -1,4 +1,5 @@
 ﻿using IdentityModel.Client;
+using Medlatec.Infrastructure.Constants;
 using Medlatec.Infrastructure.Extensions;
 using Medlatec.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,11 @@ namespace Medlatec.Infrastructure.Filters
     {
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
+            var role = context.HttpContext.GetUserRole();
+
+            if (role == AuthRole.SuperAdmin)
+                await next();
+
             context.HttpContext.Request.Headers.TryGetValue("Permissions", out var permissionStringValues);
             context.HttpContext.Request.Headers.TryGetValue("Authorization", out var authorization);
             if (!string.IsNullOrEmpty(permissionStringValues))

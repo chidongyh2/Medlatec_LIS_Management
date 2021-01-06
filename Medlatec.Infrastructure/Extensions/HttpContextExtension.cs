@@ -31,6 +31,12 @@ namespace Medlatec.Infrastructure.Extensions
             return payloadObject == null ? string.Empty : (string)payloadObject.sub;
         }
 
+        public static string GetUserRole(this HttpContext context)
+        {
+            var payloadObject = ParseAccessToken(context);
+            return payloadObject == null ? string.Empty : (string)payloadObject.role;
+        }
+
         public static string GetClientId(this HttpContext context)
         {
             var payloadObject = ParseAccessToken(context);

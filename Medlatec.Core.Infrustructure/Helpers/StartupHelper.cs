@@ -9,6 +9,9 @@ using Microsoft.OpenApi.Models;
 using Medlatec.Infrastructure.InitializationStage;
 using Medlatec.Core.Infrustructure.Initializations;
 using Medlatec.Core.Infrastructure.SeedData;
+using FluentValidation;
+using Medlatec.Core.Application.ModelMetas;
+using Medlatec.Core.Application.Validations;
 
 namespace Medlatec.Core.Api.Helpers
 {
@@ -24,6 +27,13 @@ namespace Medlatec.Core.Api.Helpers
             services.AddTransient<IInitializationStage, SeedTenantInitialization>();
             return services;
         }
+
+        public static IServiceCollection AddValidations(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddSingleton<IValidator<PageMeta>, PageMetaValidator>();
+            return services;
+        }
+
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
             // prevent from mapping "sub" claim to nameidentifier.
