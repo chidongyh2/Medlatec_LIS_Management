@@ -10,8 +10,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace Medlatec.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20201229091505_InitalizatonDatabase")]
-    partial class InitalizatonDatabase
+    [Migration("20210105103529_InitialCoreDatabase")]
+    partial class InitialCoreDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,10 +27,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("NUMBER(10)")
                         .HasAnnotation("Oracle:ValueGenerationStrategy", OracleValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("BgColor")
-                        .HasColumnType("NVARCHAR2(500)")
-                        .HasMaxLength(500);
 
                     b.Property<int>("ChildCount")
                         .HasColumnType("NUMBER(10)");
@@ -64,6 +60,9 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<bool?>("IsDeleted")
+                        .HasColumnType("NUMBER(1)");
+
+                    b.Property<bool>("IsShowSidebar")
                         .HasColumnType("NUMBER(1)");
 
                     b.Property<string>("LastUpdatedBy")
@@ -116,6 +115,10 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .HasColumnType("NVARCHAR2(500)")
                         .HasMaxLength(500);
 
+                    b.Property<string>("AdminPortal")
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
 
@@ -144,6 +147,10 @@ namespace Medlatec.Core.Infrastructure.Migrations
 
                     b.Property<DateTimeOffset>("LastUpdatedDate")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
+
+                    b.Property<string>("LearnerPortal")
+                        .HasColumnType("NVARCHAR2(500)")
+                        .HasMaxLength(500);
 
                     b.Property<string>("Logo")
                         .HasColumnType("NVARCHAR2(500)")
@@ -287,52 +294,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("Accounts");
-                });
-
-            modelBuilder.Entity("Medlatec.Infrastructure.Domain.AccountAggregate.AccountSetting", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
-
-                    b.Property<string>("GroupKey")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<bool?>("IsDeleted")
-                        .HasColumnType("NUMBER(1)");
-
-                    b.Property<string>("Key")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("LastUpdatedBy")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("LastUpdatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<DateTimeOffset>("LastUpdatedDate")
-                        .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("RAW(16)");
-
-                    b.Property<string>("Value")
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AccountSettings");
                 });
 
             modelBuilder.Entity("Medlatec.Infrastructure.Domain.AccountAggregate.Role", b =>
@@ -645,15 +606,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .WithMany("TenantPages")
                         .HasForeignKey("TenantId")
                         .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Medlatec.Infrastructure.Domain.AccountAggregate.AccountSetting", b =>
-                {
-                    b.HasOne("Medlatec.Infrastructure.Domain.AccountAggregate.Account", null)
-                        .WithMany("AccountSettings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

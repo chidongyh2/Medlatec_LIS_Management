@@ -18,10 +18,6 @@ namespace Medlatec.Core.Infrastructure.EntityConfigurations
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasMany(e => e.AccountSettings)
-                .WithOne()
-                .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             builder.ToTable("Accounts").HasKey(x => x.Id);
         }

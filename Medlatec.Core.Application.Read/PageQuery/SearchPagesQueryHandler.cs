@@ -2,6 +2,7 @@
 using MediatR;
 using Medlatec.Core.Application.Queries.PageQuery;
 using Medlatec.Core.Application.ViewModels;
+using Medlatec.Infrastructure.Extensions;
 using Medlatec.Infrastructure.Helpers;
 using Medlatec.Infrastructure.Utils;
 using Medlatec.Infrastructure.ViewModel;
@@ -49,7 +50,7 @@ namespace Medlatec.Core.Application.Read.PageQuery
             dynParams.Add(":rslt2", OracleDbType.RefCursor, ParameterDirection.Output);
             dynParams.Add(":Skip", OracleDbType.Int32, ParameterDirection.Input, request.Skip);
             dynParams.Add(":PageSize", OracleDbType.Int32, ParameterDirection.Input, request.PageSize);
-            dynParams.Add(":Keyword", OracleDbType.NVarchar2, ParameterDirection.Input, request.Keyword);
+            dynParams.Add(":Keyword", OracleDbType.NVarchar2, ParameterDirection.Input, request.Keyword.NormalizeForSearch());
             dynParams.Add(":Sort", OracleDbType.NVarchar2, ParameterDirection.Input, request.Sort);
             dynParams.Add(":IsActive", OracleDbType.Boolean, ParameterDirection.Input, request.IsActive);
 

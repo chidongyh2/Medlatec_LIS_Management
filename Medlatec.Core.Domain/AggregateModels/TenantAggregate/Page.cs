@@ -34,14 +34,6 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         public string IdPath { get; private set; }
 
         /// <summary>
-        /// Mã trang
-        /// </summary>
-        public string Code { get; private set; }
-        /// <summary>
-        /// Mã trang cha
-        /// </summary>
-        public string ParentCode { get; private set; }
-        /// <summary>
         /// Icon của trang.
         /// </summary>
         [MaxLength(250)]

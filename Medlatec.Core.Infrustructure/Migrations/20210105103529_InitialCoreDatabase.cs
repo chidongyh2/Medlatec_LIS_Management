@@ -4,7 +4,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 namespace Medlatec.Core.Infrastructure.Migrations
 {
-    public partial class InitalizatonDatabase : Migration
+    public partial class InitialCoreDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -89,11 +89,11 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     Description = table.Column<string>(maxLength: 500, nullable: false),
                     IdPath = table.Column<string>(maxLength: 250, nullable: true),
                     Icon = table.Column<string>(maxLength: 250, nullable: true),
-                    BgColor = table.Column<string>(maxLength: 500, nullable: true),
                     Order = table.Column<int>(nullable: false),
                     OrderPath = table.Column<string>(maxLength: 250, nullable: true),
                     ParentId = table.Column<int>(nullable: true),
                     IsDelete = table.Column<bool>(nullable: false),
+                    IsShowSidebar = table.Column<bool>(nullable: false),
                     ChildCount = table.Column<int>(nullable: false),
                     Url = table.Column<string>(maxLength: 500, nullable: true),
                     Type = table.Column<int>(nullable: false)
@@ -122,39 +122,13 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     Address = table.Column<string>(maxLength: 500, nullable: false),
                     IsActive = table.Column<bool>(nullable: false),
                     Note = table.Column<string>(maxLength: 500, nullable: true),
-                    Logo = table.Column<string>(maxLength: 500, nullable: true)
+                    Logo = table.Column<string>(maxLength: 500, nullable: true),
+                    LearnerPortal = table.Column<string>(maxLength: 500, nullable: true),
+                    AdminPortal = table.Column<string>(maxLength: 500, nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tenants", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AccountSettings",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CreatedDate = table.Column<DateTimeOffset>(nullable: false),
-                    LastUpdatedDate = table.Column<DateTimeOffset>(nullable: false),
-                    CreatedBy = table.Column<string>(nullable: true),
-                    CreatedById = table.Column<string>(nullable: true),
-                    LastUpdatedBy = table.Column<string>(nullable: true),
-                    LastUpdatedById = table.Column<string>(nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false),
-                    Key = table.Column<string>(nullable: true),
-                    Value = table.Column<string>(nullable: true),
-                    GroupKey = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AccountSettings", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AccountSettings_Accounts_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -402,11 +376,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccountSettings_UserId",
-                table: "AccountSettings",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -470,9 +439,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AccountSettings");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

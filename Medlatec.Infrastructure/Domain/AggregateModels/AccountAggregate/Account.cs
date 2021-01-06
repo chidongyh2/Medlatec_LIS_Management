@@ -26,7 +26,6 @@ namespace Medlatec.Infrastructure.Domain.AccountAggregate
         public string FullName => $"{FirstName} {LastName}";
         public virtual IList<AccountRole> AccountRoles { get; private set; } = new List<AccountRole>();
         public virtual IList<IdentityUserLogin<Guid>> Logins { get; } = new List<IdentityUserLogin<Guid>>();
-        public virtual IList<AccountSetting> AccountSettings { get; private set; } = new List<AccountSetting>();
 
         public Account()
         {

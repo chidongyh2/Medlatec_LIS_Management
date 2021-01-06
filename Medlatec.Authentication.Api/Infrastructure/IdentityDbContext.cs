@@ -18,7 +18,6 @@ namespace Medlatec.Authentication.Infrastructure
             base.OnModelCreating(builder);
             #region Table Mapping
             builder.Entity<Account>(x => x.ToTable("Accounts"));
-            builder.Entity<AccountSetting>(x => x.ToTable("AccountSettings"));
             #endregion
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

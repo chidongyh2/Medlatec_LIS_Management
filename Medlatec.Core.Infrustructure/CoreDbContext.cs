@@ -36,7 +36,6 @@ namespace Medlatec.Core.Infrastructure
             builder.Entity<Ethnic>(x => x.ToTable("Ethnics"));
             builder.Entity<District>(x => x.ToTable("Districts"));
             builder.Entity<Province>(x => x.ToTable("Provinces"));
-            builder.Entity<AccountSetting>(x => x.ToTable("AccountSettings"));
             builder.Entity<RolePage>(x => x.ToTable("RolePages"));
             #endregion
         }

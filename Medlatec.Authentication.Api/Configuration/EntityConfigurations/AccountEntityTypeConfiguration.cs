@@ -12,11 +12,6 @@ namespace Medlatec.Authentication.Configuration.EntityConfigurations
                 .WithOne()
                 .HasForeignKey(e => e.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(e => e.AccountSettings)
-                .WithOne()
-                .HasForeignKey(e => e.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
