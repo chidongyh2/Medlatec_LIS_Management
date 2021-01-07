@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Builder;
 using Medlatec.Infrastructure.Constants;
 using Microsoft.OpenApi.Models;
 using Medlatec.Authentication.Initializations;
+using Medlatec.Infrastructure.Mvc;
 
 namespace Medlatec.Authentication.Helpers
 {
@@ -46,6 +47,7 @@ namespace Medlatec.Authentication.Helpers
             services.AddTransient<IInitializationStage, MigrateDatabaseInitialization>();
             services.AddTransient<IInitializationStage, SeedClientInitialization>();
             services.AddTransient<IInitializationStage, UserAccountInitialization>();
+            services.AddScoped<IScopeContext, ScopeContext>();
             return services;
         }
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)

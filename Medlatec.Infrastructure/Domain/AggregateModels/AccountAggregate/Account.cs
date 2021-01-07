@@ -105,5 +105,9 @@ namespace Medlatec.Infrastructure.Domain.AccountAggregate
         {
             AccountRoles.Add(new AccountRole(Id, roleId));
         }
+        public void SetTenant(Guid tenantId)
+        {
+            TenantId = tenantId;
+        }
     }
 }

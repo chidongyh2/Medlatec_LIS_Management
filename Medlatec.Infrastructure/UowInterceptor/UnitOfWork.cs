@@ -1,6 +1,6 @@
-﻿using Medlatec.Infrastructure.SeedWorks;
+﻿using Medlatec.Infrastructure.Oracle;
+using Medlatec.Infrastructure.SeedWorks;
 using Medlatec.Infrastructure.UowInterceptor.Abstracts;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace Medlatec.Core.Infrastructure
 {
-    public class CoreUnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private readonly CoreDbContext _dbContext;
-        private readonly ILogger<CoreUnitOfWork> _logger;
+        private readonly IDbContext _dbContext;
+        private readonly ILogger<UnitOfWork> _logger;
         private readonly IInterceptorManager _interceptors;
 
-        public CoreUnitOfWork(CoreDbContext dbContext, ILogger<CoreUnitOfWork> logger, IInterceptorManager interceptorManager)
+        public UnitOfWork(IDbContext dbContext, ILogger<UnitOfWork> logger, IInterceptorManager interceptorManager)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -33,8 +33,7 @@ namespace Medlatec.Core.Infrastructure
             try
             {
                 await _interceptors.BeforeCommit();
-                var changeSet = _dbContext.ChangeTracker.Entries()
-                    .Where(t => t.State != EntityState.Unchanged && t.State != EntityState.Detached).ToList();
+                var changeSet = _dbContext.ChangeTracker.Entries().ToList();
                 await _interceptors.Execute(changeSet);
                 var result = await _dbContext.SaveChangesAsync(cancellationToken);
                 await transaction.CommitAsync(cancellationToken);

@@ -20,15 +20,14 @@ namespace Medlatec.Core.Infrastructure.Repository
             return await _pageRepository.ExistAsync(x => x.Id == id);
         }
 
-        public async Task<int> Insert(Page page)
+        public void Insert(Page page)
         {
             _pageRepository.Create(page);
-            return await Context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(Page page)
+        public void Update(Page page)
         {
-            return await Context.SaveChangesAsync();
+            _pageRepository.Update(page);
         }
 
         public async Task<int> UpdateIdPath(int id, string idPath)
@@ -97,25 +96,17 @@ namespace Medlatec.Core.Infrastructure.Repository
             return result;
         }
 
-        public async Task<int> Delete(int id)
-        {
-            var info = await GetInfo(id);
-            if (info == null)
-                return -1;
-            info.RemoveAll();
-            _pageRepository.Delete(info);
-            return await Context.SaveChangesAsync();
-        }
+        //public void Delete(int id)
+        //{
+        //    var info = await GetInfo(id);
+        //    info.RemoveAll();
+        //    _pageRepository.Delete(info);
+        //}
 
-        public async Task<int> ForceDelete(int id)
-        {
-            var info = await GetInfo(id);
-            if (info == null)
-                return -1;
-
-            _pageRepository.Delete(info);
-            return await Context.SaveChangesAsync();
-        }
+        //public void ForceDelete(int id)
+        //{
+        //    _pageRepository.Delete(info);
+        //}
         public async Task<Page> GetInfo(int id, bool isReadOnly = false)
         {
             return await _pageRepository.GetAsync(isReadOnly, x => x.Id == id);

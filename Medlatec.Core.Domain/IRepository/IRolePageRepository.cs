@@ -32,5 +32,7 @@ namespace Medlatec.Core.Domain.IRepository
         Task<int> ForceDeleteByRoleId(Guid roleId);
 
         Task<RolePage> GetInfo(Guid roleId, int pageId);
+
+        Task<int> DeleteRoleByPageId(int pageId);
     }
 }

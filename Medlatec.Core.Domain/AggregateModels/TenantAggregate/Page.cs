@@ -1,4 +1,5 @@
-﻿using Medlatec.Infrastructure.Extensions;
+﻿using Medlatec.Infrastructure.Domain.AccountAggregate;
+using Medlatec.Infrastructure.Extensions;
 using Medlatec.Infrastructure.SeedWorks;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
 {
-    public class Page : ModifierTrackingEntity
+    public class Page : ModifierTrackingEntity, IAggregateRoot
     {
         [Key]
         public int Id { get; private set; }
@@ -76,7 +77,9 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         [Required]
         public PageType Type { get; private set; }
 
+
         public virtual ISet<TenantPage> TenantPages { get; private set; }
+        public virtual ISet<RolePage> RolePages { get; private set; }
 
         public Page()
         {
@@ -85,7 +88,7 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             Order = 0;
         }
 
-        public Page(int id, string name, string description, string icon, int order, int? parentId, string url, bool isActive, PageType type = PageType.Sub)
+        public Page(int id, string name, string description, string icon, int order, int? parentId, string url, bool isActive)
         {
             Id = id;
             IsActive = isActive;
@@ -97,7 +100,7 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             IdPath = id.ToString();
             Name = name;
             Description = description;
-            Type = type;
+            Type = parentId.HasValue ? PageType.Tab : PageType.Sub;
         }
 
         public void UpdateInfo(string name, string description, string icon, int order, string url, bool isActive)
@@ -126,7 +129,8 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
 
         public void RemoveAll()
         {
-            TenantPages = null;
+            RolePages = new HashSet<RolePage>();
+            TenantPages = new HashSet<TenantPage>();
         }
         public void UpdateIdPath(string idPath)
         {
@@ -139,6 +143,15 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
         public void SetChildCount(int childCount)
         {
             ChildCount = childCount;
+        }
+        public void RemoveAllRolePages()
+        {
+            RolePages = new HashSet<RolePage>();
+        }
+
+        public void SetPageType(PageType pageType)
+        {
+            Type = pageType;
         }
 
     }

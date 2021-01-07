@@ -7,6 +7,7 @@ using Medlatec.Infrastructure.Resources;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Medlatec.Infrastructure.Constants;
 
 namespace Medlatec.Core.Application.Write.Pages
 {
@@ -27,15 +28,18 @@ namespace Medlatec.Core.Application.Write.Pages
         }
         public async Task<ActionResultResponse> Handle(DeletePageCommand request, CancellationToken cancellationToken)
         {
-            var result = await _pageRepository.Delete(request.Id);
-            if (result <= 0)
-                return new ActionResultResponse(result, result == -1 ?
-                    _resourceService.GetString("Page not found.")
-                    : _sharedResourceService.GetString("Something went wrong. Please contact with administrator."));
+            var page = await _pageRepository.GetInfo(request.Id, false);
 
-            await _rolePageRepository.DeleteByPageId(request.Id);
+            if (page == null)
+                return new ActionResultResponse(-1, _resourceService.GetString("Page not found."));
 
-            return new ActionResultResponse(result, _resourceService.GetString("Delete page successful."));
+            page.RemoveAll();
+
+            var result = await _rolePageRepository.DeleteRoleByPageId(request.Id);
+
+            return new ActionResultResponse(result > 0 ? 200: -1,
+                result > 0 ? _resourceService.GetString("Delete page successful.")
+                : _sharedResourceService.GetString(ErrorMessage.SomethingWentWrong));
         }
     }
 }

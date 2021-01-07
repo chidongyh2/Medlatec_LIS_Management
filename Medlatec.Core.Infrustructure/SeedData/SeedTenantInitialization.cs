@@ -22,7 +22,7 @@ namespace Medlatec.Core.Infrastructure.SeedData
         {
             if (!_context.Set<Tenant>().Any())
             {
-                var tenantId = Guid.NewGuid();
+                var tenantId = Guid.Parse("6a04024a-77b9-4ed1-a05b-cf4b50a3f5df");
                 var tenant = new Tenant(tenantId, "Medlatec", "quynv@medlatec.vn", "0369574322", "Nghĩa Dũng", true, "", "");
                 _context.Add(tenant);
                 // set tenant Pages

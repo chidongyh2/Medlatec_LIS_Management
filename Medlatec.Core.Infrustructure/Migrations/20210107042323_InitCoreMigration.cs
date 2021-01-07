@@ -4,7 +4,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 
 namespace Medlatec.Core.Infrastructure.Migrations
 {
-    public partial class InitialCoreDatabase : Migration
+    public partial class InitCoreMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -79,9 +79,9 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     CreatedDate = table.Column<DateTimeOffset>(nullable: false),
                     LastUpdatedDate = table.Column<DateTimeOffset>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
-                    CreatedById = table.Column<string>(nullable: true),
+                    CreatedById = table.Column<Guid>(nullable: false),
                     LastUpdatedBy = table.Column<string>(nullable: true),
-                    LastUpdatedById = table.Column<string>(nullable: true),
+                    LastUpdatedById = table.Column<Guid>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: true),
                     IsActive = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(maxLength: 250, nullable: false),
@@ -111,9 +111,9 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     CreatedDate = table.Column<DateTimeOffset>(nullable: false),
                     LastUpdatedDate = table.Column<DateTimeOffset>(nullable: false),
                     CreatedBy = table.Column<string>(nullable: true),
-                    CreatedById = table.Column<string>(nullable: true),
+                    CreatedById = table.Column<Guid>(nullable: false),
                     LastUpdatedBy = table.Column<string>(nullable: true),
-                    LastUpdatedById = table.Column<string>(nullable: true),
+                    LastUpdatedById = table.Column<Guid>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: true),
                     Name = table.Column<string>(maxLength: 500, nullable: false),
                     UnsignName = table.Column<string>(maxLength: 500, nullable: false),
@@ -238,26 +238,6 @@ namespace Medlatec.Core.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RolePages",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false),
-                    PageId = table.Column<int>(nullable: false),
-                    Permissions = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RolePages", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_RolePages_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Ethnics",
                 columns: table => new
                 {
@@ -314,6 +294,32 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         name: "FK_Religions_Nationals_NationalId",
                         column: x => x.NationalId,
                         principalTable: "Nationals",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RolePages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false),
+                    PageId = table.Column<int>(nullable: false),
+                    Permissions = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RolePages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RolePages_Pages_PageId",
+                        column: x => x.PageId,
+                        principalTable: "Pages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RolePages_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -420,6 +426,11 @@ namespace Medlatec.Core.Infrastructure.Migrations
                 name: "IX_Religions_NationalId",
                 table: "Religions",
                 column: "NationalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RolePages_PageId",
+                table: "RolePages",
+                column: "PageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RolePages_RoleId",

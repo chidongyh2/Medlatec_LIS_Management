@@ -12,6 +12,7 @@ namespace Medlatec.Infrastructure.Oracle
         /// Database
         /// </summary>
         Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade Database { get; }
+        void Dispose();
 
         /// <summary>
         /// Lưu lại thay đổi của các thực thể trong context
@@ -74,6 +75,11 @@ namespace Medlatec.Infrastructure.Oracle
         /// <value>Các bộ lọc.</value>
         QueryFilterProvider Filters { get; }
 
+        /// <summary>
+        /// Get Change tracking entity
+        /// </summary>
+        /// <value>Các bộ lọc.</value>
+        ChangeTracker ChangeTracker { get; }
         ///// <summary>
         ///// Sử dụng câu query sql để truy vấn dữ liệu
         ///// </summary>
@@ -122,10 +128,5 @@ namespace Medlatec.Infrastructure.Oracle
         ///// <returns>Dữ liệu của cột đầu tiên dòng đầu tiên</returns>
         //Task<object> RawScalarAsync(string commandText, params object[] parameters);
 
-        ///// <summary>
-        ///// Các bộ lọc cho từng nguồn dữ liệu
-        ///// </summary>
-        ///// <value>Các bộ lọc.</value>
-        //QueryFilterProvider Filters { get; }        
     }
 }

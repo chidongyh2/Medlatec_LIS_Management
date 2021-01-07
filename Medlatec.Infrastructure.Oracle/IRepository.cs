@@ -190,6 +190,12 @@ namespace Medlatec.Infrastructure.Oracle
         void Create(T entity);
 
         /// <summary>
+        /// Update một phần tử mới trong db
+        /// </summary>
+        /// <param name="entity">Thực thể.</param>
+        void Update(T entity);
+
+        /// <summary>
         /// Tạo ra một danh sách các phần tử mới trong db
         /// </summary>
         /// <param name="entity">Thực thể.</param>

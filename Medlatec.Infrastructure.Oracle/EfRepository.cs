@@ -196,6 +196,12 @@ namespace Medlatec.Infrastructure.Oracle
                 throw new ArgumentNullException(nameof(entity));
             Entities.Add(entity);
         }
+        public void Update(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
+            _context.Entry(entity).State = EntityState.Modified;
+        }
 
         public void Creates(List<T> entity)
         {
@@ -212,8 +218,17 @@ namespace Medlatec.Infrastructure.Oracle
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
+
+            _context.Entry(entity).State = EntityState.Deleted;
+        }
+
+        public void ForceDelete(T entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException(nameof(entity));
             _context.Set<T>().Attach(entity);
             Entities.Remove(entity);
+            _context.Entry(entity).State = EntityState.Deleted;
         }
 
         private IQueryable<T> FindCore(bool isReadOnly, Expression<Func<T, bool>> spec, Func<IQueryable<T>, IQueryable<T>> preFilter, params Func<IQueryable<T>, IQueryable<T>>[] postFilters)

@@ -89,7 +89,7 @@ namespace Medlatec.Core.Api
             services.AddLocalization(options => options.ResourcesPath = "Resources");
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IDbContext, CoreDbContext>();
-            services.AddScoped<IUnitOfWork, CoreUnitOfWork>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IScopeContext, ScopeContext>();
             //init lifetime service DI
             services.AddScoped<IResourceService<SharedResource>, ResourceService<SharedResource>>();

@@ -10,6 +10,7 @@ using Medlatec.Infrastructure.Oracle;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Medlatec.Core.Infrastructure
 {
@@ -61,5 +62,7 @@ namespace Medlatec.Core.Infrastructure
         }
 
         public QueryFilterProvider Filters => _filterProviderInitializer.Value;
+
+        public ChangeTracker GetChangeTracker => ChangeTracker;
     }
 }

@@ -1,15 +1,15 @@
 ﻿using Medlatec.Infrastructure.SeedWorks;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Medlatec.Infrastructure.Oracle;
 
 namespace Medlatec.Infrastructure.Extensions
 {
     public static class MediatrExtensions
     {
-        public static async Task DispatchDomainEventsAsync(this IMediator mediator, DbContext ctx, CancellationToken cancellationToken = default(CancellationToken))
+        public static async Task DispatchDomainEventsAsync(this IMediator mediator, IDbContext ctx, CancellationToken cancellationToken = default(CancellationToken))
         {
             var domainEntities = ctx.ChangeTracker
                 .Entries<IChangeTrackingEntity>()

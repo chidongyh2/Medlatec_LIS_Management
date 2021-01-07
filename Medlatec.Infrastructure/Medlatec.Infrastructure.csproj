@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Medlatec.Infrastructure.Oracle\Medlatec.Infrastructure.Oracle.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TrimmerRootAssembly Include="mscorlib" />
   </ItemGroup>
 </Project>

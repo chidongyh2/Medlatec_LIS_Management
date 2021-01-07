@@ -32,8 +32,8 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
@@ -66,8 +66,8 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     b.Property<string>("LastUpdatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<string>("LastUpdatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
+                    b.Property<Guid>("LastUpdatedById")
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTimeOffset>("LastUpdatedDate")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
@@ -120,8 +120,8 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
+                    b.Property<Guid>("CreatedById")
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
@@ -140,8 +140,8 @@ namespace Medlatec.Core.Infrastructure.Migrations
                     b.Property<string>("LastUpdatedBy")
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<string>("LastUpdatedById")
-                        .HasColumnType("NVARCHAR2(2000)");
+                    b.Property<Guid>("LastUpdatedById")
+                        .HasColumnType("RAW(16)");
 
                     b.Property<DateTimeOffset>("LastUpdatedDate")
                         .HasColumnType("TIMESTAMP(7) WITH TIME ZONE");
@@ -348,6 +348,8 @@ namespace Medlatec.Core.Infrastructure.Migrations
                         .HasColumnType("RAW(16)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PageId");
 
                     b.HasIndex("RoleId");
 
@@ -609,6 +611,12 @@ namespace Medlatec.Core.Infrastructure.Migrations
 
             modelBuilder.Entity("Medlatec.Infrastructure.Domain.AccountAggregate.RolePage", b =>
                 {
+                    b.HasOne("Medlatec.Core.Domain.AggregateModels.TenantAggregate.Page", null)
+                        .WithMany("RolePages")
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Medlatec.Infrastructure.Domain.AccountAggregate.Role", "Role")
                         .WithMany("RolePages")
                         .HasForeignKey("RoleId")

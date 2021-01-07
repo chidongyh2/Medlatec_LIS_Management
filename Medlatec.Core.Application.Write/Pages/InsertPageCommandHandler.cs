@@ -9,6 +9,7 @@ using MediatR;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Medlatec.Infrastructure.SeedWorks;
 
 namespace Medlatec.Core.Application.Write.Pages
 {
@@ -17,9 +18,11 @@ namespace Medlatec.Core.Application.Write.Pages
         private readonly IPageRepository _pageRepository;
         private readonly IResourceService<SharedResource> _sharedResourceService;
         private readonly IResourceService<CoreResource> _resourceService;
-        public InsertPageCommandHandler(IPageRepository pageRepository,
+        private readonly IUnitOfWork _uow;
+        public InsertPageCommandHandler(IPageRepository pageRepository, IUnitOfWork uow,
             IResourceService<SharedResource> sharedResourceService, IResourceService<CoreResource> resourceService)
         {
+            _uow = uow;
             _pageRepository = pageRepository;
             _sharedResourceService = sharedResourceService;
             _resourceService = resourceService;
@@ -31,7 +34,7 @@ namespace Medlatec.Core.Application.Write.Pages
             if (isIdExists)
                 return new ActionResultResponse(-1, _resourceService.GetString("Page already exists."));
 
-            var page = new Page(request.Id, request.Name, request.Description, request.Icon.Trim(), request.Order , -1, request.Url, request.IsActive);
+            var page = new Page(request.Id, request.Name, request.Description, request.Icon.Trim(), request.Order, -1, request.Url, request.IsActive);
 
             if (request.ParentId.HasValue)
             {
@@ -41,21 +44,21 @@ namespace Medlatec.Core.Application.Write.Pages
 
                 page.SetParent(parentInfo.Id);
             }
-            #region Update page idPath.
 
-            //page.IdPath = page.IdPath.Replace("-1", page.Id.ToString());
-            //await _pageRepository.Update(page);
-            #endregion
             if (request.TenantIds != null && request.TenantIds.Any())
             {
                 page.SetTenantsPage(request.TenantIds);
             }
 
-            var resultInsertPage = await _pageRepository.Insert(page);
+            page.SetPageType(request.ParentId.HasValue ? PageType.Tab : PageType.Sub);
+
+            _pageRepository.Insert(page);
+            var resultInsertPage = await _uow.SaveChangesAsync(cancellationToken);
             if (resultInsertPage <= 0)
                 return new ActionResultResponse(resultInsertPage, _sharedResourceService.GetString("Something went wrong. Please contact with administrator."));
 
             return new ActionResultResponse(resultInsertPage, _resourceService.GetString("Add new page successful."));
+
         }
     }
 }

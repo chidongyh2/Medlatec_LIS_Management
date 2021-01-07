@@ -1,5 +1,4 @@
-﻿using Medlatec.Authentication.Infrastructure;
-using Medlatec.Infrastructure.Extensions;
+﻿using Medlatec.Core.Infrastructure;
 using Medlatec.Infrastructure.Mvc;
 using Medlatec.Infrastructure.SeedWorks;
 using Medlatec.Infrastructure.UowInterceptor.Abstracts;
@@ -8,16 +7,18 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Medlatec.Infrastructure.Extensions;
+using Medlatec.Infrastructure.Oracle;
 
-namespace Medlatec.Authentication.Api.Infrastructure
+namespace Medlatec.Core.Infrustructure
 {
-    public class UowIdentityTracking : IOnBeforeCommit
+    public class UowTracking : IOnBeforeCommit
     {
-        private readonly IdentityDbContext _dbContext;
+        private readonly IDbContext _dbContext;
         private readonly IScopeContext _scopeContext;
         private readonly IMediator _mediator;
 
-        public UowIdentityTracking(IdentityDbContext dbContext, IScopeContext scopeContext, IMediator mediator)
+        public UowTracking(IDbContext dbContext, IScopeContext scopeContext, IMediator mediator)
         {
             _dbContext = dbContext;
             _scopeContext = scopeContext;
@@ -25,7 +26,7 @@ namespace Medlatec.Authentication.Api.Infrastructure
         }
         public async Task OnBeforeCommit()
         {
-           // await _mediator.DispatchDomainEventsAsync(_dbContext);
+            // await _mediator.DispatchDomainEventsAsync(_dbContext);
 
             var entityEntries = _dbContext.ChangeTracker.Entries().Where(x =>
                 x.Entity is IEntity && (x.State == EntityState.Added || x.State == EntityState.Modified)).ToList();
@@ -38,9 +39,9 @@ namespace Medlatec.Authentication.Api.Infrastructure
                             if (entry.Entity is IModifierTrackingEntity)
                             {
                                 entry.Property(nameof(IModifierTrackingEntity.CreatedById)).IsModified = true;
-                                entry.Property(nameof(IModifierTrackingEntity.CreatedById)).CurrentValue = _scopeContext.UserId;
-                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).IsModified = true;
-                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.UserId;
+                                entry.Property(nameof(IModifierTrackingEntity.CreatedById)).CurrentValue = _scopeContext.CurrentUser.Id;
+                                entry.Property(nameof(IModifierTrackingEntity.CreatedBy)).IsModified = true;
+                                entry.Property(nameof(IModifierTrackingEntity.CreatedBy)).CurrentValue = _scopeContext.CurrentUser.FullName;
                             }
                             if (entry.Entity is IDateTracking)
                             {
@@ -56,9 +57,10 @@ namespace Medlatec.Authentication.Api.Infrastructure
                         {
                             if (entry.Entity is ModifierTrackingEntity)
                             {
-                                entry.Property(nameof(IModifierTrackingEntity.CreatedById)).IsModified = false;
                                 entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).IsModified = true;
-                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.UserId;
+                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.CurrentUser.Id;
+                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedBy)).IsModified = true;
+                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.CurrentUser.FullName;
                             }
                             if (entry.Entity is IDateTracking)
                             {
@@ -73,7 +75,7 @@ namespace Medlatec.Authentication.Api.Infrastructure
                     case EntityState.Detached:
                     case EntityState.Deleted:
                         entry.Property(nameof(IModifierTrackingEntity.IsDeleted)).IsModified = true;
-                        entry.Property(nameof(IModifierTrackingEntity.IsDeleted)).CurrentValue = _scopeContext.UserId;
+                        entry.Property(nameof(IModifierTrackingEntity.IsDeleted)).CurrentValue = _scopeContext.CurrentUser.Id;
                         entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).IsModified = true;
                         entry.Property(nameof(IDateTracking.LastUpdatedDate)).CurrentValue = DateTimeOffset.Now;
                         break;

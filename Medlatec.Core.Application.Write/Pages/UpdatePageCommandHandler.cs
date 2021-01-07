@@ -7,15 +7,17 @@ using Medlatec.Infrastructure.Resources;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using Medlatec.Infrastructure.SeedWorks;
 
 namespace Medlatec.Core.Application.Write.Pages
 {
     public class UpdatePageCommandHandler : IRequestHandler<UpdatePageCommand, ActionResultResponse>
     {
+        private IUnitOfWork _uow;
         private readonly IPageRepository _pageRepository;
         private readonly IResourceService<SharedResource> _sharedResourceService;
         private readonly IResourceService<CoreResource> _resourceService;
-        public UpdatePageCommandHandler(IPageRepository pageRepository,
+        public UpdatePageCommandHandler(IPageRepository pageRepository, IUnitOfWork uow,
             IResourceService<SharedResource> sharedResourceService, IResourceService<CoreResource> resourceService)
         {
             _pageRepository = pageRepository;
@@ -44,7 +46,10 @@ namespace Medlatec.Core.Application.Write.Pages
             }
             pageInfo.UpdateInfo(request.Name, request.Description, request.Icon.Trim(), request.Order, request.Url, request.IsActive);
 
-            var resultUpdatePage = await _pageRepository.Update(pageInfo);
+            _pageRepository.Update(pageInfo);
+
+            var resultUpdatePage = await _uow.SaveChangesAsync(cancellationToken);
+
             if (resultUpdatePage < 0)
                 return new ActionResultResponse(resultUpdatePage, _sharedResourceService.GetString("Something went wrong. Please contact with administrator."));
 
