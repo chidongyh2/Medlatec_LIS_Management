@@ -8,6 +8,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Medlatec.Infrastructure.SeedWorks;
+using System;
 
 namespace Medlatec.Core.Application.Write.Pages
 {
@@ -20,6 +21,7 @@ namespace Medlatec.Core.Application.Write.Pages
         public UpdatePageCommandHandler(IPageRepository pageRepository, IUnitOfWork uow,
             IResourceService<SharedResource> sharedResourceService, IResourceService<CoreResource> resourceService)
         {
+            _uow = uow;
             _pageRepository = pageRepository;
             _sharedResourceService = sharedResourceService;
             _resourceService = resourceService;
@@ -44,7 +46,7 @@ namespace Medlatec.Core.Application.Write.Pages
             {
                 pageInfo.SetParent(null);
             }
-            pageInfo.UpdateInfo(request.Name, request.Description, request.Icon.Trim(), request.Order, request.Url, request.IsActive);
+            pageInfo.UpdateInfo(request.Name, request.Description, request.Icon.Trim(), request.Order, request.Url, request.IsActive, request.IsShowSidebar);
 
             _pageRepository.Update(pageInfo);
 

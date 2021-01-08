@@ -60,7 +60,7 @@ namespace Medlatec.Core.Infrustructure
                                 entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).IsModified = true;
                                 entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.CurrentUser.Id;
                                 entry.Property(nameof(IModifierTrackingEntity.LastUpdatedBy)).IsModified = true;
-                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).CurrentValue = _scopeContext.CurrentUser.FullName;
+                                entry.Property(nameof(IModifierTrackingEntity.LastUpdatedBy)).CurrentValue = _scopeContext.CurrentUser.FullName;
                             }
                             if (entry.Entity is IDateTracking)
                             {
@@ -74,10 +74,6 @@ namespace Medlatec.Core.Infrustructure
                     case EntityState.Unchanged:
                     case EntityState.Detached:
                     case EntityState.Deleted:
-                        entry.Property(nameof(IModifierTrackingEntity.IsDeleted)).IsModified = true;
-                        entry.Property(nameof(IModifierTrackingEntity.IsDeleted)).CurrentValue = _scopeContext.CurrentUser.Id;
-                        entry.Property(nameof(IModifierTrackingEntity.LastUpdatedById)).IsModified = true;
-                        entry.Property(nameof(IDateTracking.LastUpdatedDate)).CurrentValue = DateTimeOffset.Now;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();

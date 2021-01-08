@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Medlatec.Infrastructure.InitializationStage;
 using Medlatec.Infrastructure.Constants;
 using Medlatec.Infrastructure.Domain.AccountAggregate;
+using System;
 
 namespace Medlatec.Core.Infrastructure.SeedData
 {
@@ -23,7 +24,7 @@ namespace Medlatec.Core.Infrastructure.SeedData
             {
                 var allRoles = new List<Role>
             {
-                new Role(AuthRole.SuperAdmin, AuthRole.SuperAdmin, AuthRole.SuperAdmin)
+                new Role(Guid.Parse(AuthRole.SuperAdminId), Guid.Parse(AuthRole.SuperAdminId), AuthRole.SuperAdmin, AuthRole.SuperAdmin, AuthRole.SuperAdmin)
             };
                 foreach (var item in allRoles)
                 {

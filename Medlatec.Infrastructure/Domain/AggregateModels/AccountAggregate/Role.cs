@@ -18,7 +18,7 @@ namespace Medlatec.Infrastructure.Domain.AccountAggregate
         public string Type { get; private set; }
         public virtual ISet<RolePage> RolePages { get; private set; }
         public virtual ISet<AccountRole> AccountRoles { get; private set; }
-        public Role(Guid id, Guid tenantId, string name, string description)
+        public Role(Guid id, Guid tenantId, string name, string description, string type = AuthRole.Administrator)
         {
             TenantId = tenantId;
             Name = name;
@@ -26,7 +26,7 @@ namespace Medlatec.Infrastructure.Domain.AccountAggregate
             NormalizedName = name.Trim().StripVietnameseChars().ToUpper();
             Description = description?.Trim();
             TenantId = tenantId;
-            Type = AuthRole.Administrator;
+            Type = type;
             ConcurrencyStamp = id.ToString();
             Id = id;
         }

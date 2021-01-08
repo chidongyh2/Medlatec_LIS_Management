@@ -23,17 +23,25 @@ namespace Medlatec.Core.Api.Controllers
             _mediator = mediator;
         }
         [AcceptVerbs("GET")]
+        [AllowPermission(PageId.ConfigPage, Permission.View)]
+        [CheckPermission]
         public async Task<IActionResult> Search(string keyword, string sort, bool? isActive, int page = 1, int pageSize = 20)
         {
             var result = await _mediator.Send(new SearchPagesQuery(keyword, sort, page, pageSize, isActive));
             return Ok(result);
         }
 
-        //[Route("{id}"), AcceptVerbs("GET")]
-        //public async Task<IActionResult> Detail(int id)
-        //{
-        //    return Ok(await _pageService.Detail(id));
-        //}
+        [Route("{id}"), AcceptVerbs("GET")]
+        [AllowPermission(PageId.ConfigPage, Permission.View)]
+        [CheckPermission]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var result = await _mediator.Send(new GetPageDetailQuery(id));
+            if (result.Code < 0)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
 
         [AcceptVerbs("POST"), ValidateModel]
         [AllowPermission(PageId.ConfigPage, Permission.Insert)]
@@ -58,29 +66,40 @@ namespace Medlatec.Core.Api.Controllers
             return Ok(result);
         }
 
-        //[Route("{id}"), AcceptVerbs("POST")]
-        //[AllowPermission(PageId.ConfigPage, Permission.Update)]
-        //[CheckPermission]
-        //public async Task<IActionResult> Update([FromBody] PageMeta pageMeta)
-        //{
-        //    var result = await _pageService.Update(pageMeta);
-        //    if (result.Code <= 0)
-        //        return BadRequest(result);
+        [HttpPut("{id}"), ValidateModel]
+        [AllowPermission(PageId.ConfigPage, Permission.Update)]
+        [CheckPermission]
+        public async Task<IActionResult> Update(int id, [FromBody] PageMeta pageMeta)
+        {
+            var result = await _mediator.Send(new UpdatePageCommand(
+                id,
+                CurrentUser.TenantId,
+                pageMeta.IsActive,
+                pageMeta.IsShowSidebar,
+                pageMeta.Icon,
+                pageMeta.Order,
+                pageMeta.ParentId,
+                pageMeta.Url,
+                pageMeta.Name,
+                pageMeta.Description
+                ));
+            if (result.Code <= 0)
+                return BadRequest(result);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
-        //[Route("{id}"), AcceptVerbs("DELETE")]
-        //[AllowPermission(PageId.ConfigPage, Permission.Delete)]
-        //[CheckPermission]
-        //public async Task<IActionResult> Delete(int id)
-        //{
-        //    var result = await _pageService.Delete(id);
-        //    if (result.Code <= 0)
-        //        return BadRequest(result);
+        [Route("{id}"), AcceptVerbs("DELETE")]
+        [AllowPermission(PageId.ConfigPage, Permission.Delete)]
+        [CheckPermission]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _mediator.Send(new DeletePageCommand(id));
+            if (result.Code <= 0)
+                return BadRequest(result);
 
-        //    return Ok(result);
-        //}
+            return Ok(result);
+        }
 
         [Route("trees"), AcceptVerbs("GET")]
         [AllowPermission(PageId.ConfigPage, Permission.View)]

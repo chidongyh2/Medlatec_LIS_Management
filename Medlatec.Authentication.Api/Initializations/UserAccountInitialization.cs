@@ -27,7 +27,7 @@ namespace Medlatec.Authentication.Initializations
                 #region UserAccount
                 var userAccount = new Account("ngoquy97it@gmail.com", "Ngô Văn",
                     "Quý", null, null, null, true, "123456");
-                userAccount.SetTenant(Guid.Parse("6a04024a-77b9-4ed1-a05b-cf4b50a3f5df"));
+                userAccount.SetTenant(Guid.Parse(AuthRole.SuperAdminId));
                 await _userManager.CreateAsync(userAccount, "123456");
                 var role = _context.Set<Role>().ToList();
                 var superAdminRole = _context.Set<Role>().Where(x => x.Name == AuthRole.SuperAdmin).FirstOrDefault();

@@ -88,7 +88,7 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             Order = 0;
         }
 
-        public Page(int id, string name, string description, string icon, int order, int? parentId, string url, bool isActive)
+        public Page(int id, string name, string description, string icon, int order, int? parentId, string url, bool isActive, bool isShowSidebar)
         {
             Id = id;
             IsActive = isActive;
@@ -97,19 +97,21 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             OrderPath = $"{id}.{order}";
             ParentId = parentId;
             Url = url;
-            IdPath = id.ToString();
+            IdPath = parentId.HasValue && parentId > 1 ? $"{parentId}.{id}" : id.ToString();
             Name = name;
             Description = description;
+            IsShowSidebar = isShowSidebar;
             Type = parentId.HasValue ? PageType.Tab : PageType.Sub;
         }
 
-        public void UpdateInfo(string name, string description, string icon, int order, string url, bool isActive)
+        public void UpdateInfo(string name, string description, string icon, int order, string url, bool isActive, bool isShowSidebar)
         {
             IsActive = isActive;
             Icon = icon;
             Order = order;
             Url = url;
             Name = name;
+            IsShowSidebar = isShowSidebar;
             Description = description;
         }
 
@@ -127,10 +129,11 @@ namespace Medlatec.Core.Domain.AggregateModels.TenantAggregate
             TenantPages.AddRange(toBeAddedIds.Select(tenantId => new TenantPage(tenantId, Id, false)));
         }
 
-        public void RemoveAll()
+        public void Delete()
         {
             RolePages = new HashSet<RolePage>();
             TenantPages = new HashSet<TenantPage>();
+            IsDelete = true;
         }
         public void UpdateIdPath(string idPath)
         {

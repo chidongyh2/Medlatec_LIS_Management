@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Medlatec.Core.Application.ViewModels
+﻿namespace Medlatec.Core.Application.ViewModels
 {
     public class RoleDetailViewModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string ConcurrencyStamp { get; set; }
-        public List<RolesPagesViewModel> RolesPagesViewModels { get; set; }
-        public List<UserRoleViewModel> Users { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsShowSidebar { get; set; }
+        public string Icon { get; set; }
+        public string Url { get; set; }
+        public int? ParentId { get; set; }
+        public string OrderPath { get; set; }
+        public string IdPath { get; set; }
+        public int? Order { get; set; }
     }
 }

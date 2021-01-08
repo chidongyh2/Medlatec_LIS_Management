@@ -38,7 +38,7 @@
         }
       ],
       "UpstreamPathTemplate": "/api/v{version}/core/{everything}",
-      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "UseServiceDiscovery": false
     }
   ]

@@ -95,11 +95,13 @@ namespace Medlatec.Core.Infrastructure.Repository
                 : _sharedResourceService.GetString("Something went wrong. Please contact with administrator."));
         }
 
-        public async Task<int> DeleteRoleByPageId(int pageId)
+        public async Task DeleteRoleByPageId(int pageId)
         {
             var listRolesPages = await GetsByPageId(pageId);
-            _rolePageRepository.Deletes(listRolesPages);
-            return await Context.SaveChangesAsync();
+            if (listRolesPages.Count > 0)
+            { 
+                _rolePageRepository.Deletes(listRolesPages);
+            }
         }
 
         public async Task<int> DeleteByRoleIdAndPageIds(Guid roleId, List<int> pageId)

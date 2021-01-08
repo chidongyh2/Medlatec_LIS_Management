@@ -32,8 +32,7 @@ namespace Medlatec.Infrastructure.Oracle
 
             entity.ForEach(x =>
             {
-                _context.Set<T>().Attach(x);
-                Entities.Remove(x);
+                _context.Entry(entity).State = EntityState.Deleted;
             });
         }
 
